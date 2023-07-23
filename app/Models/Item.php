@@ -5,22 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class ItemStack extends Model
+class Item extends Model
 {
     use HasFactory;
 
     protected $fillable = [
         'name',
-        'description',
-        'is_set'
+        'notes',
+        'is_intact',
     ];
 
     protected $casts = [
-        'is_set' => 'bool'
+        'is_intact' => 'bool'
     ];
 
-    public function items(): \Illuminate\Database\Eloquent\Relations\HasMany
+    public function itemStack(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
-        return $this->hasMany(Item::class);
+        return $this->belongsTo(ItemStack::class);
     }
 }
