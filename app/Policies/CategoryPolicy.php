@@ -2,12 +2,12 @@
 
 namespace App\Policies;
 
-use App\Models\Organisation;
+use App\Models\Category;
 use App\Models\User;
 use App\Models\UserRole;
 use Illuminate\Auth\Access\HandlesAuthorization;
 
-class OrganisationPolicy
+class CategoryPolicy
 {
     use HandlesAuthorization;
 
@@ -16,7 +16,7 @@ class OrganisationPolicy
         return $user->role >= UserRole::User;
     }
 
-    public function view(User $user, Organisation $organisation): bool
+    public function view(User $user, Category $category): bool
     {
         return $user->role >= UserRole::User;
     }
@@ -26,22 +26,22 @@ class OrganisationPolicy
         return $user->role >= UserRole::Admin;
     }
 
-    public function update(User $user, Organisation $organisation): bool
+    public function update(User $user, Category $category): bool
     {
         return $user->role >= UserRole::Admin;
     }
 
-    public function delete(User $user, Organisation $organisation): bool
+    public function delete(User $user, Category $category): bool
     {
         return $user->role >= UserRole::Admin;
     }
 
-    public function restore(User $user, Organisation $organisation): bool
+    public function restore(User $user, Category $category): bool
     {
         return $user->role >= UserRole::Admin;
     }
 
-    public function forceDelete(User $user, Organisation $organisation): bool
+    public function forceDelete(User $user, Category $category): bool
     {
         return $user->role >= UserRole::Admin;
     }
