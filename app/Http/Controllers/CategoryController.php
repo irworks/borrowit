@@ -14,7 +14,7 @@ class CategoryController extends Controller
 
     public function show(Category $category)
     {
-        return $category;
+        return view('categories.itemStacks.index', ['category' => $category]);
     }
 
     public function store(CategoryRequest $request)
