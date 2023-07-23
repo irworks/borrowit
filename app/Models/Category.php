@@ -14,4 +14,14 @@ class Category extends Model
         'description',
         'is_organisation_required',
     ];
+
+    public function itemStacks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ItemStack::class);
+    }
+
+    public function topItemStacks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->itemStacks()->limit(5);
+    }
 }

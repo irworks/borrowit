@@ -11,16 +11,6 @@ class CategoryPolicy
 {
     use HandlesAuthorization;
 
-    public function viewAny(User $user): bool
-    {
-        return $user->role >= UserRole::User;
-    }
-
-    public function view(User $user, Category $category): bool
-    {
-        return $user->role >= UserRole::User;
-    }
-
     public function create(User $user): bool
     {
         return $user->role >= UserRole::Admin;

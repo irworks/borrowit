@@ -9,9 +9,12 @@ class CategoryController extends Controller
 {
     public function index()
     {
-        $this->authorize('viewAny', Category::class);
+        return view('categories.index', ['categories' => Category::all()]);
+    }
 
-        return Category::all();
+    public function show(Category $category)
+    {
+        return $category;
     }
 
     public function store(CategoryRequest $request)
@@ -19,13 +22,6 @@ class CategoryController extends Controller
         $this->authorize('create', Category::class);
 
         return Category::create($request->validated());
-    }
-
-    public function show(Category $category)
-    {
-        $this->authorize('view', $category);
-
-        return $category;
     }
 
     public function update(CategoryRequest $request, Category $category)
