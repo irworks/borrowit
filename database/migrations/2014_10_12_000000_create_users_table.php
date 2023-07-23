@@ -15,10 +15,18 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
+            $table->string('phone');
             $table->timestamp('email_verified_at')->nullable();
+            $table->unsignedInteger('role')->default(1);
+            $table->boolean('active')->default(true);
             $table->string('password');
+            $table->timestamp('last_login_at')->nullable();
+            $table->foreignId('organisation_id')->nullable();
+
             $table->rememberToken();
             $table->timestamps();
+
+            $table->foreign('organisation_id')->references('in')->on('organisations');
         });
     }
 
