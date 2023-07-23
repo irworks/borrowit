@@ -18,6 +18,11 @@ return [
         'passwords' => 'users',
     ],
 
+    'registration' => [
+        'enabled' => env('REGISTRATION_ALLOWED', true),
+        'restricted' => env('REGISTRATION_RESTRICTED_DOMAINS', true),
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Authentication Guards
