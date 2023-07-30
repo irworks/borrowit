@@ -13,8 +13,15 @@ return [
     |
     */
 
+    'login'    => 'Login',
+    'register' => 'Register',
+    'logout'   => 'Logout',
     'failed' => 'These credentials do not match our records.',
     'password' => 'The provided password is incorrect.',
     'throttle' => 'Too many login attempts. Please try again in :seconds seconds.',
 
+    'roles-0'  => 'Guest',
+    'roles-1'  => 'User',
+    'roles-2'  => 'Manager',
+    'roles-3'  => 'Admin',
 ];
