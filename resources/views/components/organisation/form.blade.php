@@ -14,7 +14,7 @@
     </td>
     <td>
         <input class="form-control" type="text" id="name" name="name" form="org-{{ $organisation->id ?? 0 }}"
-                value="{{ $organisation->name ?? '' }}" placeholder="@lang('organisation.name')">
+                value="{{ $organisation->name ?? '' }}" placeholder="@lang('organisation.name')" required>
     </td>
     <td class="text-center">
         {{ $organisation?->users()->count() ?? '-' }}
@@ -32,10 +32,9 @@
         </button>
 
         @if(!empty($organisation))
-            <form class="d-inline-block" method="post" action="{{ route('organisations.destroy', ['organisation' => $organisation]) }}">
-                @csrf
-                <button type="submit" class="btn btn-danger ms-2"><i class="bi bi-trash"></i></button>
-            </form>
+            <button type="button" class="btn btn-danger ms-2"
+                    data-bs-toggle="modal" onclick="document.getElementById('deleteForm').action = '{{ route('organisations.destroy', ['organisation' => $organisation]) }}'"
+                    data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
         @endif
     </td>
 </tr>

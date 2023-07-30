@@ -17,6 +17,16 @@
         @include('layouts.navigation.navbar')
 
         <main class="py-4">
+            @if ($errors->any())
+                <div class="toast-container top-end-corner">
+                    @foreach($errors->all() as $error)
+                        <x-toast :title="__('general.error')">
+                            {{ $error }}
+                        </x-toast>
+                    @endforeach
+                </div>
+            @endif
+
             @yield('content')
         </main>
     </div>

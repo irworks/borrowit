@@ -19,6 +19,8 @@ class OrganisationController extends Controller
     {
         $this->authorize('create', Organisation::class);
 
+        Organisation::create($request->validated());
+
         return redirect(route('organisations.index'));
     }
 
