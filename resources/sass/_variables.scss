@@ -11,3 +11,10 @@ $font-size-base: 0.9rem;
 $line-height-base: 1.6;
 
 $headings-font-family: 'Fjalla One', sans-serif;
+
+// tables
+$table-cell-padding-y: 1rem;
+.table-dark {
+  --bs-table-bg: #2e7c7d !important;
+  --bs-table-border-color: #2e7c7d !important;
+}

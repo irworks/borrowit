@@ -12,21 +12,14 @@ class OrganisationController extends Controller
     {
         $this->authorize('viewAny', Organisation::class);
 
-        return Organisation::all();
+        return view('organisations.index', ['organisations' => Organisation::all()]);
     }
 
     public function store(OrganisationRequest $request)
     {
         $this->authorize('create', Organisation::class);
 
-        return Organisation::create($request->validated());
-    }
-
-    public function show(Organisation $organisation)
-    {
-        $this->authorize('view', $organisation);
-
-        return $organisation;
+        return redirect(route('organisations.index'));
     }
 
     public function update(OrganisationRequest $request, Organisation $organisation)
@@ -35,7 +28,7 @@ class OrganisationController extends Controller
 
         $organisation->update($request->validated());
 
-        return $organisation;
+        return redirect(route('organisations.index'));
     }
 
     public function destroy(Organisation $organisation)
@@ -44,6 +37,6 @@ class OrganisationController extends Controller
 
         $organisation->delete();
 
-        return response()->json();
+        return redirect(route('organisations.index'));
     }
 }
