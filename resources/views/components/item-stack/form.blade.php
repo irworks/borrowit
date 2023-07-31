@@ -22,7 +22,7 @@
     </td>
     <td>
         <div class="form-check">
-            <input class="form-check-input" type="checkbox" value="true" id="is_set" @if($itemStack->is_set ?? false) checked @endif form="item-stack-{{ $itemStack->id ?? 0 }}">
+            <input class="form-check-input" type="checkbox" value="true" id="is_set" name="is_set" @if($itemStack->is_set ?? false) checked @endif form="item-stack-{{ $itemStack->id ?? 0 }}">
             <label class="form-check-label" for="is_set">
                 @lang('item-stack.is-set')
             </label>

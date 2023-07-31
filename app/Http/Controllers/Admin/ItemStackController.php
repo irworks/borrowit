@@ -25,8 +25,17 @@ class ItemStackController extends Controller
     public function store(ItemStackRequest $request)
     {
         $this->authorize('create', ItemStack::class);
+        $data = $request->validated();
+        if ($request->has('is_set')) {
+            $data['is_set'] = true;
+        }
 
-        ItemStack::create($request->validated());
+        $itemStack = ItemStack::create($data);
+        $itemStack->items()->create([
+            'name' => $itemStack->name,
+            'is_intact' => true
+        ]);
+
         return redirect(route('itemStacks.index'));
     }
 
@@ -46,6 +55,15 @@ class ItemStackController extends Controller
 
         $itemStack->update($data);
 
-        return redirect(route('itemStacks.index'));
+        return back();
+    }
+
+    public function destroy(ItemStack $itemStack)
+    {
+        $this->authorize('delete', $itemStack);
+
+        $itemStack->delete();
+
+        return back();
     }
 }
