@@ -9,10 +9,11 @@ class ItemStackRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'name' => ['required'],
+            'name' => ['required', 'string'],
+            'image_uri' => ['nullable', 'string'],
             'description' => ['nullable'],
-            'is_set' => ['required'],
-            'category_id' => ['required', 'integer'],
+            'is_set' => ['nullable'],
+            'category_id' => ['required', 'integer', 'exists:categories,id'],
         ];
     }
 

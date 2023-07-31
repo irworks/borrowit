@@ -12,7 +12,8 @@ class ItemStack extends Model
     protected $fillable = [
         'name',
         'description',
-        'is_set'
+        'is_set',
+        'category_id'
     ];
 
     protected $casts = [

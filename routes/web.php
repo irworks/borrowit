@@ -23,3 +23,6 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::resource('/categories', App\Http\Controllers\CategoryController::class);
 Route::resource('/organisations', App\Http\Controllers\Manager\OrganisationController::class);
 Route::resource('/users', App\Http\Controllers\Admin\UserController::class);
+
+Route::resource('/itemStacks', App\Http\Controllers\Admin\ItemStackController::class);
+Route::resource('/itemStacks/{itemStack}/items', App\Http\Controllers\Admin\ItemStackController::class);

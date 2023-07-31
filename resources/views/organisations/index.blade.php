@@ -1,8 +1,8 @@
 @extends('layouts.page')
 
 @section('page-content')
-    <h1>@lang('organisations.overview')</h1>
-    <p>@lang('organisations.overview-description')</p>
+    <h1>@lang('organisation.overview')</h1>
+    <p>@lang('organisation.overview-description')</p>
 
     <x-delete-section></x-delete-section>
 
