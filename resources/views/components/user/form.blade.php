@@ -13,19 +13,22 @@
         </form>
     </td>
     <td>
+        <label class="visually-hidden" for="name">@lang('user.name')</label>
         <input class="form-control" type="text" id="name" name="name" form="user-{{ $user->id ?? 0 }}"
                 value="{{ $user->name ?? '' }}" placeholder="@lang('user.name')" required>
     </td>
     <td>
+        <label class="visually-hidden" for="email">@lang('user.email')</label>
         <input class="form-control" type="email" id="email" name="email" form="user-{{ $user->id ?? 0 }}"
-               value="{{ $user->email ?? '' }}" placeholder="@lang('user.name')" required>
+               value="{{ $user->email ?? '' }}" placeholder="@lang('user.email')" required>
     </td>
     <td>
-        <input class="form-control" type="tel" id="phone" name="phone" form="user-{{ $user->phone ?? 0 }}"
+        <label class="visually-hidden" for="phone">@lang('user.phone')</label>
+        <input class="form-control" type="text" id="phone" name="phone" form="user-{{ $user->id ?? 0 }}"
                value="{{ $user->phone ?? '' }}" placeholder="@lang('user.phone')" required>
     </td>
     <td>
-        <select class="form-select" aria-label="Default select example" name="role">
+        <select class="form-select" aria-label="@lang('user.role')" name="role" form="user-{{ $user->id ?? 0 }}">
             @foreach($roles as $id => $role)
                 <option @if($id == $user->role) selected @endif value="{{ $id }}">{{ $role }}</option>
             @endforeach
