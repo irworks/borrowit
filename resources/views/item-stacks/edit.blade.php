@@ -63,14 +63,27 @@
 
         <hr>
 
-        <div class="p-3">
+        <div>
             @if($itemStack->items()->count() <= 0)
-                <h4 class="text-center">@lang('item-stack.no-items')</h4>
+                <h4 class="p-3text-center">@lang('item-stack.no-items')</h4>
             @else
-                <h4>@lang('item-stack.items')</h4>
-                @foreach($itemStack->items as $item)
+                <h4 class="p-3">@lang('item-stack.items')</h4>
+                <table class="table align-middle text-uppercase">
+                    <thead class="table-dark">
+                    <th>#</th>
+                    <th>@lang('item.name')</th>
+                    <th>@lang('item.is-intact')</th>
+                    <th>@lang('general.created-at')</th>
+                    <th>@lang('general.action')</th>
+                    </thead>
 
-                @endforeach
+                    <tbody>
+                    <x-item.form :item-stack="$itemStack"></x-item.form>
+                    @foreach($itemStack->items as $item)
+                        <x-item.form :item="$item" :item-stack="$itemStack"></x-item.form>
+                    @endforeach
+                    </tbody>
+                </table>
             @endif
         </div>
     </div>
