@@ -15,7 +15,7 @@ return new class extends Migration {
             $table->boolean('is_intact');
             $table->timestamps();
 
-            $table->foreign('item_stack_id')->references('id')->on('items');
+            $table->foreign('item_stack_id')->references('id')->on('item_stacks');
         });
     }
 
