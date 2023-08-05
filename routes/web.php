@@ -14,7 +14,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect(\route('categories.index'));
 });
 
 Auth::routes();
@@ -26,3 +26,7 @@ Route::resource('/users', App\Http\Controllers\Admin\UserController::class);
 
 Route::resource('/itemStacks', App\Http\Controllers\Admin\ItemStackController::class);
 Route::resource('/itemStacks/{itemStack}/items', App\Http\Controllers\Admin\ItemStackController::class);
+
+// user routes
+Route::get('/profile', [\App\Http\Controllers\User\UserProfileController::class, 'edit']);
+Route::post('/profile', [\App\Http\Controllers\User\UserProfileController::class, 'update'])->name('profile.update');
