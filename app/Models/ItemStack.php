@@ -13,7 +13,8 @@ class ItemStack extends Model
         'name',
         'description',
         'is_set',
-        'category_id'
+        'category_id',
+        'image_uri'
     ];
 
     protected $casts = [
@@ -23,5 +24,10 @@ class ItemStack extends Model
     public function items(): \Illuminate\Database\Eloquent\Relations\HasMany
     {
         return $this->hasMany(Item::class);
+    }
+
+    public function hasImage(): bool
+    {
+        return !empty($this->image_uri);
     }
 }

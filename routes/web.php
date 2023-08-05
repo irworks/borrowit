@@ -30,3 +30,6 @@ Route::resource('/itemStacks/{itemStack}/items', App\Http\Controllers\Admin\Item
 // user routes
 Route::get('/profile', [\App\Http\Controllers\User\UserProfileController::class, 'edit']);
 Route::post('/profile', [\App\Http\Controllers\User\UserProfileController::class, 'update'])->name('profile.update');
+
+Route::get('/categories/{category}/itemStacks/{itemStack}', [\App\Http\Controllers\ItemStackController::class, 'show'])->name('itemStack.show');
+Route::post('/reservation/add', [\App\Http\Controllers\ReservationController::class, 'add'])->name('reservation.add-itemstack');
