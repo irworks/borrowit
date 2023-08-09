@@ -2,13 +2,11 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
 use App\Http\Requests\UpdateProfileRequest;
 use App\Services\OrganisationService;
 use App\Services\UserService;
 
-// TODO: Extend auth controller
-class UserProfileController extends Controller
+class UserProfileController extends AuthUserController
 {
     public function edit(OrganisationService $organisationService)
     {
