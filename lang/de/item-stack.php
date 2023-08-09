@@ -12,9 +12,5 @@ return [
     |
     */
 
-    'yes' => 'Yes',
-    'no' => 'No',
-    'edit' => 'Edit',
-    'show-all' => 'Show all',
-    'back' => 'Go back'
+    'amount-available' => 'Insgesamt <b>:times</b> mal vorhanden.',
 ];

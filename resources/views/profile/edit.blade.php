@@ -13,7 +13,7 @@
             </div>
             <div class="col-md-6">
                 <label for="phone" class="form-label"><i class="bi bi-telephone"></i> @lang('user.phone')</label>
-                <input type="text" class="form-control" id="phone" value="{{ $user->phone }}" name="phone">
+                <input type="tel" class="form-control" id="phone" value="{{ $user->phone }}" name="phone">
             </div>
 
             <div class="col-md-6">

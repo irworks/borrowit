@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-// TODO: Auth Middleware
+use App\Http\Controllers\User\AuthUserController;
+use App\Http\Requests\ReserveItemRequest;
 use App\Models\ItemStack;
 
-class ReservationController extends Controller
+class ReservationController extends AuthUserController
 {
     /**
      * Show the current reservation
@@ -19,8 +20,10 @@ class ReservationController extends Controller
         // TODO: Display submit button
     }
 
-    public function add()
+    public function add(ReserveItemRequest $request)
     {
+        $request->validated();
+
         // TODO: find current reservation or create new
         // TODO: Add ItemStack from request to $reservation->ReservationItemStacks
         // TODO: redirect to edit()

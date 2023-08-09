@@ -12,9 +12,5 @@ return [
     |
     */
 
-    'yes' => 'Yes',
-    'no' => 'No',
-    'edit' => 'Edit',
-    'show-all' => 'Show all',
-    'back' => 'Go back'
+    'amount-available' => 'In total <b>:times</b> times available.',
 ];

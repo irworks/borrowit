@@ -40,7 +40,6 @@
 
                     <form action="{{ route('reservation.add-itemstack') }}" method="post">
                         @csrf
-
                         <input type="hidden" name="item_stack_id" value="{{ $itemStack->id }}">
 
                         @if($itemStack->items()->count() > 1)
@@ -56,7 +55,7 @@
                     </form>
                 </div>
                 <div class="card-footer">
-                    <small class="text-body-secondary">Insgesamt <b>{{ $itemStack->items()->count() }}</b> mal vorhanden.</small>
+                    <small class="text-body-secondary">{!! __('item-stack.amount-available', ['times' => $itemStack->items()->count()]) !!}</small>
                 </div>
             </div>
 
