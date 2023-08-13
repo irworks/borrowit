@@ -35,4 +35,9 @@ class Reservation extends Model
     {
         return $this->belongsTo(Organisation::class);
     }
+
+    public function reservationItemStacks(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(ReservationItemStack::class);
+    }
 }

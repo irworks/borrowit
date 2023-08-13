@@ -16,5 +16,6 @@ return [
     'no' => 'No',
     'edit' => 'Edit',
     'show-all' => 'Show all',
-    'back' => 'Go back'
+    'back' => 'Go back',
+    'pieces' => 'Pieces'
 ];

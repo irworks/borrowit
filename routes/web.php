@@ -32,4 +32,9 @@ Route::get('/profile', [\App\Http\Controllers\User\UserProfileController::class,
 Route::post('/profile', [\App\Http\Controllers\User\UserProfileController::class, 'update'])->name('profile.update');
 
 Route::get('/categories/{category}/itemStacks/{itemStack}', [\App\Http\Controllers\ItemStackController::class, 'show'])->name('itemStack.show');
+
+Route::get('/reservation', [\App\Http\Controllers\ReservationController::class, 'edit'])->name('reservation.edit');
+Route::get('/reservation/itemStacks/availability', [\App\Http\Controllers\ReservationController::class, 'availability'])->name('reservation.availability');
+
+Route::post('/reservation', [\App\Http\Controllers\ReservationController::class, 'submit'])->name('reservation.submit');
 Route::post('/reservation/add', [\App\Http\Controllers\ReservationController::class, 'add'])->name('reservation.add-itemstack');

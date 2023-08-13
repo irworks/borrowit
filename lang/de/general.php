@@ -16,5 +16,5 @@ return [
     'no' => 'Nein',
     'edit' => 'Bearbeiten',
     'show-all' => 'Alle anzeigen',
-
+    'pieces' => 'Stück'
 ];
