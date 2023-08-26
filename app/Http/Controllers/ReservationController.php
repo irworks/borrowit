@@ -28,17 +28,18 @@ class ReservationController extends AuthUserController
         $reservation = $this->reservationService->currentReservationForUser($this->user());
         $items = $this->reservationService->checkAvailability($reservation);
 
-        // TODO: Display from -> to selection
-        // TODO: Check availability for all itemStacks in their quantities
-        // TODO: Display error list if not available with concrete dates
-        // TODO: Display submit button
-
         return view('reservation.edit', [
             'reservation' => $reservation,
             'items' => $items
         ]);
     }
 
+    /**
+     * Checks the availability for the current reservation.
+     * Reservation and items are loaded from the database (the current not submitted
+     * reservation, which belongs to the current user)
+     * @return \Illuminate\Http\JsonResponse
+     */
     public function availability()
     {
         $reservation = $this->reservationService->currentReservationForUser($this->user());
@@ -53,6 +54,11 @@ class ReservationController extends AuthUserController
         ]);
     }
 
+    /**
+     * Update the from and to datetimes for the current reservation.
+     * @param UpdateReservationRequest $request
+     * @return true
+     */
     public function update(UpdateReservationRequest $request)
     {
         $data = $request->validated();
@@ -65,6 +71,12 @@ class ReservationController extends AuthUserController
         return true;
     }
 
+    /**
+     * @param ReserveItemRequest $request
+     * Add an ItemStack in a given quantity to the current reservation.
+     * If no reservation exists, a new one will be created.
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Foundation\Application|\Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
+     */
     public function add(ReserveItemRequest $request)
     {
         $data = $request->validated();
@@ -74,6 +86,10 @@ class ReservationController extends AuthUserController
         return redirect(route('reservation.edit'));
     }
 
+    /**
+     * Submit the current reservation.
+     * @return void
+     */
     public function submit()
     {
         $reservation = $this->reservationService->currentReservationForUser($this->user());

@@ -2,11 +2,12 @@
 
 namespace App\Services;
 
-use App\Models\ItemStack;
+use App\Models\BookingItem;
 use App\Models\Reservation;
 use App\Models\ReservationItemStack;
 use App\Models\User;
 use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 
 class ReservationService
 {
@@ -34,6 +35,12 @@ class ReservationService
         );
     }
 
+    /**
+     * Check availability of all ItemStacks once again and mark the
+     * reservation as submitted of all good.
+     * @param Reservation $reservation
+     * @return bool
+     */
     public function submit(Reservation $reservation): bool
     {
         $itemsAvailability = $this->checkAvailability($reservation);
@@ -41,11 +48,15 @@ class ReservationService
             return false;
         }
 
-        $reservation->update(['submitted_at' => Carbon::now()->toDateTimeString()]);
-        return true;
+        return $reservation->update(['submitted_at' => Carbon::now()->toDateTimeString()]);
     }
 
-    public function checkAvailability(Reservation $reservation)
+    /**
+     * Checks availability of the included items in their quantity.
+     * @param Reservation $reservation
+     * @return array
+     */
+    public function checkAvailability(Reservation $reservation): array
     {
         $items = [];
         $available = true;
@@ -81,25 +92,53 @@ class ReservationService
         ];
 
         // check other reservations
-        $reservedCount = ReservationItemStack::join('reservations', 'reservation_item_stacks.reservation_id', '=', 'reservations.id')
+        $builder = ReservationItemStack::join('reservations', 'reservation_item_stacks.reservation_id', '=', 'reservations.id')
             ->whereNull('fulfilled_at')
             ->whereNotNull('submitted_at')
-            ->whereItemStackId($reservationItemStack->item_stack_id)
-            ->where(function($q) use ($reservation) {
-                $q->where(function($q) use ($reservation) {
-                    $q->where('from', '<=', $reservation->from)
-                        ->where('to', '>=', $reservation->to);
-                })->orWhere(function ($q) use ($reservation) {
-                    $q->where('from', '>=', $reservation->from)
-                        ->where('to', '<=', $reservation->to);
-                });
-            })->count();
+            ->whereItemStackId($reservationItemStack->item_stack_id);
+        $reservedCount = $this->intervalBuilder($builder, $reservation)->count();
 
-        // TODO: Add booked items!
         $countUnAvailable += $reservedCount;
 
+        // check other bookings
+        $builder = BookingItem::join('bookings', 'booking_items.booking_id', '=', 'bookings.id')
+            ->whereNull('returned_at')
+            ->whereIn('item_id', $itemStack->items()->select('id'));
+        $bookedCount = $this->intervalBuilder($builder, $reservation)->count();
+
+        $countUnAvailable += $bookedCount;
+
         $result['reserved'] = $reservedCount;
+        $result['booked'] = $bookedCount;
         $result['available'] = $reservationItemStack->quantity <= ($totalItemsInStack - $countUnAvailable);
         return $result;
+    }
+
+    /**
+     * Add a interval where clause which covers
+     * all possible interval intersections.
+     * @param Builder $builder
+     * @param Reservation $reservation
+     * @return Builder
+     */
+    private function intervalBuilder(Builder $builder, Reservation $reservation): Builder
+    {
+        return $builder->where(function($q) use ($reservation) {
+            $q->where(function ($q) use ($reservation) {
+                $q->where('from', '<=', $reservation->from)
+                    ->where('to', '>=', $reservation->to);
+            })->orWhere(function ($q) use ($reservation) {
+                $q->where('from', '>=', $reservation->from)
+                    ->where('to', '<=', $reservation->to);
+            })->orWhere(function ($q) use ($reservation) {
+                $q->where('from', '>=', $reservation->from)
+                    ->where('from', '<=', $reservation->to)
+                    ->where('to', '>=', $reservation->to);
+            })->orWhere(function ($q) use ($reservation) {
+                $q->where('from', '<=', $reservation->from)
+                    ->where('from', '<=', $reservation->to)
+                    ->where('to', '>=', $reservation->from);
+            });
+        });
     }
 }
