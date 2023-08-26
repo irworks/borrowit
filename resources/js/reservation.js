@@ -22,13 +22,19 @@ const app = createApp({
             axios.get(`/reservation/itemStacks/availability`).then(result => {
                 this.items = result.data.data.items;
                 this.valid = result.data.data.available;
+
+                this.from = result.data.reservation.from;
+                this.to = result.data.reservation.to;
+
                 this.loading = false;
             });
         },
         updateTimes() {
             this.loading = true;
 
-            axios.post(``, {
+            axios.patch(`/reservation/interval`, {
+                from: this.from,
+                to: this.to,
             }).then(result => {
                 this.loadItems();
             }).catch(error => {

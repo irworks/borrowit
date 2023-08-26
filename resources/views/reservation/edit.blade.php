@@ -16,10 +16,10 @@
 
                 <div class="col-6">
                     <label for="from" class="form-label"><i class="bi bi-calendar-event"></i> @lang('reservation.from')</label>
-                    <input type="datetime-local" class="form-control" name="from" id="from" value="{{ $reservation->from->format('Y-m-d\TH:i') }}">
+                    <input type="datetime-local" v-model="from" @change="updateTimes" class="form-control" name="from" id="from">
 
                     <label for="to" class="form-label"><i class="bi bi-calendar2-event"></i> @lang('reservation.to')</label>
-                    <input type="datetime-local" class="form-control" name="to" id="to" value="{{ $reservation->to->format('Y-m-d\TH:i') }}">
+                    <input type="datetime-local" v-model="to" @change="updateTimes" class="form-control" name="to" id="to">
                 </div>
 
                 <div class="col-6">

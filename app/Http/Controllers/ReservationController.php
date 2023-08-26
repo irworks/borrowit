@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Requests\ReserveItemRequest;
+use App\Http\Requests\UpdateReservationRequest;
 use App\Models\ItemStack;
 use App\Services\ReservationService;
+use Carbon\Carbon;
 
 class ReservationController extends AuthUserController
 {
@@ -16,7 +18,6 @@ class ReservationController extends AuthUserController
 
         $this->reservationService = $reservationService;
     }
-
 
     /**
      * Show the current reservation
@@ -44,10 +45,25 @@ class ReservationController extends AuthUserController
         $items = $this->reservationService->checkAvailability($reservation);
 
         return response()->json([
-            'data' => $items
+            'data' => $items,
+            'reservation' => [
+                'from' => $reservation->from->format('Y-m-d\TH:i'),
+                'to' => $reservation->to->format('Y-m-d\TH:i'),
+            ]
         ]);
     }
 
+    public function update(UpdateReservationRequest $request)
+    {
+        $data = $request->validated();
+        $reservation = $this->reservationService->currentReservationForUser($this->user());
+        $reservation->update([
+            'from' => Carbon::createFromFormat('Y-m-d\TH:i', $data['from']),
+            'to' => Carbon::createFromFormat('Y-m-d\TH:i', $data['to']),
+        ]);
+
+        return true;
+    }
 
     public function add(ReserveItemRequest $request)
     {
