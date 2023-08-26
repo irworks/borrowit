@@ -48,4 +48,11 @@ class User extends Authenticatable
     {
         return $this->hasMany(Reservation::class);
     }
+
+    public function hasCurrentReservation(): bool
+    {
+        return $this->reservations()
+            ->whereNull(['submitted_at', 'fulfilled_at'])
+            ->exists();
+    }
 }

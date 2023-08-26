@@ -43,6 +43,14 @@
                         </li>
                     @endif
                 @else
+                    @if(auth()->user()->hasCurrentReservation())
+                        <li class="nav-item">
+                            <a class="nav-link" href="{{ route('reservation.edit') }}">
+                                @lang('reservation.current')
+                            </a>
+                        </li>
+                    @endif
+
                     <li class="nav-item dropdown">
                         <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                             {{ Auth::user()->name }}
