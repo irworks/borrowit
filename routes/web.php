@@ -44,7 +44,11 @@ Route::post('/reservation/add', [\App\Http\Controllers\ReservationController::cl
 Route::get('/reservations', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'index'])->name('reservations.index');
 Route::get('/reservations/{reservation}/collect', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'collect'])->name('reservations.collect');
 Route::get('/reservations/{reservation}/collect/details', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'details'])->name('reservations.details');
-Route::post('/reservations/{reservation}/book', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'book'])->name('reservations.book');
+Route::post('/reservations/{reservation}/collect', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'book'])->name('reservations.book');
 
 Route::get('/items/{item}', [\App\Http\Controllers\ItemController::class, 'show']);
 Route::get('/items/{item}/scan', [\App\Http\Controllers\ItemController::class, 'showReservationByItemId']);
+
+Route::get('/bookings/{booking}/return', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'return'])->name('booking.return');
+Route::get('/bookings/{booking}/return/details', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'details'])->name('booking.details');
+Route::post('/bookings/{booking}/return', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'complete'])->name('booking.complete');

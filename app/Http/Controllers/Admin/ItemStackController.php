@@ -22,6 +22,17 @@ class ItemStackController extends Controller
         ]);
     }
 
+    public function show(ItemStack $itemStack)
+    {
+        $this->authorize('view', $itemStack);
+
+        if (request()->expectsJson()) {
+            return response()->json([
+                'data' => $itemStack
+            ]);
+        }
+    }
+
     public function store(ItemStackRequest $request)
     {
         $this->authorize('create', ItemStack::class);

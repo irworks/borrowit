@@ -17,6 +17,9 @@ export default {
     scanned: {
       default: 'scanned'
     },
+    list: {
+      default: 'list'
+    },
     scannedItemStacks: {
       required: true
     }
@@ -52,9 +55,16 @@ export default {
             :class="{ 'bg-success text-light': scannedItemStacks[item.meta.id]?.length === item.quantity }">
           <div>
             {{ item.meta.name }}
+
+            <div v-if="item.items?.length > 0">
+              <small>
+                <b>{{ list }}:</b> {{ item.items.map(itemObj => itemObj.name).join(', ') }}
+              </small>
+            </div>
+
             <div v-if="listOfScannedItems(item.meta.id)?.length > 0">
               <small>
-                <b>{{ scanned }}</b> {{ listOfScannedItems(item.meta.id) }}
+                <b>{{ scanned }}:</b> {{ listOfScannedItems(item.meta.id) }}
               </small>
             </div>
           </div>

@@ -12,4 +12,9 @@ class BookingItem extends Model
     protected $fillable = [
         'item_id',
     ];
+
+    public function item(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(Item::class);
+    }
 }

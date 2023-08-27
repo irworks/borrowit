@@ -29,4 +29,19 @@ class Booking extends Model
     {
         return $this->hasMany(BookingItem::class);
     }
+
+    public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class);
+    }
+
+    public function manager(): \Illuminate\Database\Eloquent\Relations\BelongsTo
+    {
+        return $this->belongsTo(User::class, 'manager_id');
+    }
+
+    public function isReturned(): bool
+    {
+        return $this->returned_at !== null;
+    }
 }

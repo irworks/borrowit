@@ -10,6 +10,7 @@ export default defineConfig({
                 'resources/js/app.js',
                 'resources/js/reservation.js',
                 'resources/js/reservation-collector.js',
+                'resources/js/booking-returner.js',
             ],
             refresh: true,
         }),

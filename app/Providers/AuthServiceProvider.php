@@ -3,12 +3,14 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Models\Booking;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\ItemStack;
 use App\Models\Organisation;
 use App\Models\Reservation;
 use App\Models\User;
+use App\Policies\BookingPolicy;
 use App\Policies\CategoryPolicy;
 use App\Policies\ItemPolicy;
 use App\Policies\ItemStackPolicy;
@@ -32,6 +34,7 @@ class AuthServiceProvider extends ServiceProvider
         Item::class => ItemPolicy::class,
         User::class => UserPolicy::class,
         Reservation::class => ReservationPolicy::class,
+        Booking::class => BookingPolicy::class,
     ];
 
     /**

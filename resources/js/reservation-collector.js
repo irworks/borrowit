@@ -24,8 +24,10 @@ const app = createApp({
             });
         },
         submit(scannedItemIds) {
-            axios.post(`/reservations/${this.reservationId}/book`, {
+            axios.post(`/reservations/${this.reservationId}/collect`, {
                 itemIds: scannedItemIds
+            }).then(result => {
+                // TODO: Redirect away? Show message?
             });
         }
     },
