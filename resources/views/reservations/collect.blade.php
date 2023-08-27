@@ -22,6 +22,12 @@
         <h1>@lang('reservation.title') #{{ $reservation->id }}</h1>
         <p>@lang('reservation.collect-description')</p>
         <div id="reservation-collector-app">
+            <div v-if="currentView === 'main'" class="my-3 text-center">
+                <button class="btn btn-primary" @click="openScanner">
+                    <i class="bi bi-qr-code-scan"></i> @lang('general.open-scanner')
+                </button>
+            </div>
+
             <scanner v-if="currentView === 'scanner'"
                      @result="onScanComplete">
             </scanner>
@@ -65,7 +71,7 @@
 
             <div class="mt-3 d-flex justify-content-end">
                 <button @click="submit" class="btn" :class="isEverythingScanned ? 'btn-primary' : 'btn-warning'" :disabled="!isBookingValid">
-                    @lang('booking.submit') <i class="bi bi-calendar2-check"></i>
+                    @lang('booking.submit') <i class="ms-1 bi bi-calendar2-check"></i>
                 </button>
             </div>
         </div>

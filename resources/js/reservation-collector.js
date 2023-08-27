@@ -1,13 +1,16 @@
 import {createApp} from 'vue/dist/vue.esm-bundler';
 import Scanner from './components/Scanner.vue';
 
+const beepAudio = new Audio('/audio/beep.mp3');
+
+
 const app = createApp({
     components: {
         Scanner
     },
     data() {
         return {
-            currentView: 'scanner',
+            currentView: 'main',
             loading: false,
             complete: false,
             reservationId: -1,
@@ -29,11 +32,15 @@ const app = createApp({
                 this.loading = false;
             });
         },
+        openScanner() {
+            this.currentView = 'scanner';
+        },
         onScanComplete(itemId) {
             if (this.scannedItemIds.includes(itemId)) {
                 return;
             }
 
+            beepAudio.play();
             this.scannedItemIds.push(itemId);
             this.loadItem(itemId).then(result => {
                 let item = result.data.data;
