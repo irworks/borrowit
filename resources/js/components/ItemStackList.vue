@@ -1,7 +1,6 @@
 <script>
 export default {
   name: "ItemStackList",
-  emits: ['result'],
   props: {
     itemStacks: {
       required: true
