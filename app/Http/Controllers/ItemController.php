@@ -4,6 +4,8 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\ItemRequest;
 use App\Models\Item;
+use App\Models\Reservation;
+use App\Services\ReservationService;
 
 class ItemController extends Controller
 {
@@ -25,7 +27,21 @@ class ItemController extends Controller
     {
         $this->authorize('view', $item);
 
+        if (request()->expectsJson()) {
+            return response()->json([
+                'data' => $item
+            ]);
+        }
+
         return $item;
+    }
+
+    public function showReservationByItemId(Item $item, ReservationService $reservationService)
+    {
+        $reservation = $reservationService->reservationByItem($item);
+        abort_if($reservation === null, 404);
+
+        return redirect(route('reservations.collect', ['reservation' => $reservation]));
     }
 
     public function update(ItemRequest $request, Item $item)

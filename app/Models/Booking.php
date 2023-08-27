@@ -16,7 +16,6 @@ class Booking extends Model
         'manager_id',
         'from',
         'to',
-        'returned_at',
         'reservation_id',
     ];
 
@@ -25,4 +24,9 @@ class Booking extends Model
         'to' => 'datetime',
         'returned_at' => 'datetime',
     ];
+
+    public function items(): \Illuminate\Database\Eloquent\Relations\HasMany
+    {
+        return $this->hasMany(BookingItem::class);
+    }
 }

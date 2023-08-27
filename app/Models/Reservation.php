@@ -26,6 +26,11 @@ class Reservation extends Model
         'fulfilled_at' => 'datetime',
     ];
 
+    public function isFulfilled(): bool
+    {
+        return $this->fulfilled_at !== null;
+    }
+
     public function user(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(User::class);

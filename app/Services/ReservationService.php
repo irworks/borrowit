@@ -3,6 +3,7 @@
 namespace App\Services;
 
 use App\Models\BookingItem;
+use App\Models\Item;
 use App\Models\Reservation;
 use App\Models\ReservationItemStack;
 use App\Models\User;
@@ -11,6 +12,24 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ReservationService
 {
+    public function index()
+    {
+        return Reservation::whereNotNull('submitted_at')
+            ->orderBy('fulfilled_at')
+            ->orderBy('from');
+    }
+
+    public function reservationByItem(Item $item): ?Reservation
+    {
+        return $this->index()->whereNull('fulfilled_at')
+            ->select('reservations.*')
+            ->join('reservation_item_stacks', 'reservations.id', '=', 'reservation_item_stacks.reservation_id')
+            ->join('items', 'reservation_item_stacks.item_stack_id', '=', 'items.item_stack_id')
+            ->where('items.id', '=', $item->id)
+            ->where('to', '>=', Carbon::now()->toDateTimeString())
+            ->first();
+    }
+
     /**
      * Gets the currently active reservation.
      * @param User $user

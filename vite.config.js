@@ -9,6 +9,7 @@ export default defineConfig({
                 'resources/sass/app.scss',
                 'resources/js/app.js',
                 'resources/js/reservation.js',
+                'resources/js/reservation-collector.js',
             ],
             refresh: true,
         }),

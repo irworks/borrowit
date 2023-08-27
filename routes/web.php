@@ -39,3 +39,12 @@ Route::get('/reservation/itemStacks/availability', [\App\Http\Controllers\Reserv
 Route::post('/reservation', [\App\Http\Controllers\ReservationController::class, 'submit'])->name('reservation.submit');
 Route::patch('/reservation/interval', [\App\Http\Controllers\ReservationController::class, 'update'])->name('reservation.update');
 Route::post('/reservation/add', [\App\Http\Controllers\ReservationController::class, 'add'])->name('reservation.add-itemstack');
+
+// manager routes
+Route::get('/reservations', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'index'])->name('reservations.index');
+Route::get('/reservations/{reservation}/collect', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'collect'])->name('reservations.collect');
+Route::get('/reservations/{reservation}/collect/details', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'details'])->name('reservations.details');
+Route::post('/reservations/{reservation}/book', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'book'])->name('reservations.book');
+
+Route::get('/items/{item}', [\App\Http\Controllers\ItemController::class, 'show']);
+Route::get('/items/{item}/scan', [\App\Http\Controllers\ItemController::class, 'showReservationByItemId']);
