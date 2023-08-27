@@ -7,11 +7,13 @@ use App\Models\Category;
 use App\Models\Item;
 use App\Models\ItemStack;
 use App\Models\Organisation;
+use App\Models\Reservation;
 use App\Models\User;
 use App\Policies\CategoryPolicy;
 use App\Policies\ItemPolicy;
 use App\Policies\ItemStackPolicy;
 use App\Policies\OrganisationPolicy;
+use App\Policies\ReservationPolicy;
 use App\Policies\UserPolicy;
 use Illuminate\Foundation\Support\Providers\AuthServiceProvider as ServiceProvider;
 
@@ -29,6 +31,7 @@ class AuthServiceProvider extends ServiceProvider
         ItemStack::class => ItemStackPolicy::class,
         Item::class => ItemPolicy::class,
         User::class => UserPolicy::class,
+        Reservation::class => ReservationPolicy::class,
     ];
 
     /**
