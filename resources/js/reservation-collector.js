@@ -1,12 +1,12 @@
 import {createApp} from 'vue/dist/vue.esm-bundler';
 import Scanner from './components/Scanner.vue';
+import ItemStackList from './components/ItemStackList.vue';
 
 const beepAudio = new Audio('/audio/beep.mp3');
-
-
 const app = createApp({
     components: {
-        Scanner
+        Scanner,
+        ItemStackList
     },
     data() {
         return {
@@ -53,13 +53,6 @@ const app = createApp({
         },
         loadItem(itemId) {
             return axios.get(`/items/${itemId}`);
-        },
-        listOfScannedItems(itemStackId) {
-            if (!this.scannedItemStacks.hasOwnProperty(itemStackId)) {
-                return [];
-            }
-
-            return this.scannedItemStacks[itemStackId].map(itemStack => itemStack.name).join(', ');
         },
         submit() {
             axios.post(`/reservations/${this.reservationId}/book`, {

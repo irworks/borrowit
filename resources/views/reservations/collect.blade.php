@@ -33,32 +33,14 @@
             </scanner>
 
             <b class="fs-5">@lang('reservation.list-itemStacks')</b>
-            <ul class="placeholder-glow list-group">
-                <div v-if="loading">
-                    @foreach($reservation->reservationItemStacks as $item)
-                        <li class="list-group-item">
-                            <span class="placeholder col-12"></span>
-                        </li>
-                    @endforeach
-                </div>
-
-                <div v-else>
-                    <li v-for="item in itemStacks"
-                        class="list-group-item d-flex justify-content-between align-items-center"
-                        :class="{ 'bg-success text-light': scannedItemStacks[item.meta.id]?.length == item.quantity }">
-                        <div>
-                            @{{ item.meta.name }}
-                            <div v-if="listOfScannedItems(item.meta.id)?.length > 0">
-                                <small>
-                                    <b>@lang('booking.scanned'):</b> @{{ listOfScannedItems(item.meta.id) }}
-                                </small>
-                            </div>
-                        </div>
-
-                        <span class="badge bg-primary rounded-pill">@{{ scannedItemStacks[item.meta.id]?.length ?? 0 }} / @{{ item.quantity }} @lang('general.pieces')</span>
-                    </li>
-                </div>
-            </ul>
+            <item-stack-list :item-stacks="itemStacks"
+                             :scanned-item-stacks="scannedItemStacks"
+                             :count-placeholders="{{ $reservation->reservationItemStacks()->count() }}"
+                             :loading="loading"
+                             pieces="{{ __('general.pieces') }}"
+                             scanned="{{ __('general.scanned') }}"
+            >
+            </item-stack-list>
 
             @if(!empty($reservation->notes))
                 <div class="bg-white rounded shadow-sm my-2 p-4">
