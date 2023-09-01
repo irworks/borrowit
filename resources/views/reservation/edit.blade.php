@@ -14,7 +14,7 @@
 
             <div class="row">
 
-                <div class="col-6">
+                <div class="col-12 col-md-5">
                     <label for="from" class="form-label"><i class="bi bi-calendar-event"></i> @lang('reservation.from')</label>
                     <input type="datetime-local" v-model="from" @change="updateTimes" class="form-control" name="from" id="from">
 
@@ -22,8 +22,12 @@
                     <input type="datetime-local" v-model="to" @change="updateTimes" class="form-control" name="to" id="to">
                 </div>
 
-                <div class="col-6">
-                    <ul class="placeholder-glow list-group">
+                <div class="col-0 col-md-1"></div>
+
+                <div class="col-12 col-md-6 mt-3 mt-md-0">
+                    <span><i class="bi bi-card-list"></i> @lang('reservation.items')</span>
+
+                    <ul class="mt-2 placeholder-glow list-group">
                         <div v-if="loading">
                             @foreach($items as $item)
                                 <li class="list-group-item">
@@ -53,7 +57,7 @@
                     </ul>
                 </div>
 
-                <div class="d-flex justify-content-end">
+                <div class="mt-2 d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary" :class="{disabled: !valid}">
                         @lang('reservation.submit')
                     </button>
