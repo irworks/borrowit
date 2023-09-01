@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Manager;
 
 use App\Http\Controllers\User\AuthUserController;
+use App\Http\Requests\ReturnBookingRequest;
 use App\Http\Requests\StoreBookingRequest;
 use App\Http\Resources\BookingResource;
 use App\Http\Resources\ReservationResource;
@@ -66,25 +67,23 @@ class ManagerBookingController extends AuthUserController
     }
 
     /**
-     * Create a Booking from a Reservation
-     * @param Reservation $reservation
-     * @param BookingService $bookingService
-     * @param StoreBookingRequest $request
+     * Return items for a booking.
+     * @param Booking $booking
+     * @param ReturnBookingRequest $request
      * @return JsonResponse|RedirectResponse
      */
-    /*public function complete(Reservation $reservation, BookingService $bookingService, StoreBookingRequest $request)
+    public function complete(Booking $booking, ReturnBookingRequest $request)
     {
-        $this->authorize('collect', $reservation);
+        $this->authorize('return', $booking);
         $data = $request->validated();
 
-        $bookingService->store($reservation, $data['itemIds']);
-
+        $result = $this->bookingService->returnItems($booking, $data['itemIds']);
         if (request()->expectsJson()) {
             return response()->json([
-                'result' => true,
+                'result' => $result,
             ]);
         }
 
-        return redirect(route('reservations.index'));
-    }*/
+        return redirect(route('bookings.index'));
+    }
 }

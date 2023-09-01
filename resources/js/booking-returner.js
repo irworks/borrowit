@@ -8,6 +8,7 @@ const app = createApp({
     data() {
         return {
             loading: false,
+            error: false,
             bookingId: -1,
             items: [],
             itemStacks: [],
@@ -62,10 +63,17 @@ const app = createApp({
             });
         },
         submit(scannedItemIds) {
-            axios.post(`/booking/${this.bookingId}/return`, {
+            this.error = false;
+
+            axios.post(`/bookings/${this.bookingId}/return`, {
                 itemIds: scannedItemIds
-            }).then(result => {
-                // TODO: Redirect away? Show message?
+            }).then(response => {
+                const result = response.data.result;
+                if (result) {
+                    window.location = '/';
+                } else {
+                    this.error = true;
+                }
             });
         }
     },
