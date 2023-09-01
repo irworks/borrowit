@@ -49,7 +49,7 @@
                             <input type="hidden" name="quantity" value="1">
                         @endif
 
-                        <button type="submit" class="btn btn-primary">
+                        <button type="submit" class="btn btn-primary" @if($itemStack->items()->count() <= 0) disabled @endif>
                             <i class="me-1 bi bi-calendar-plus"></i> @lang('reservation.reserve')
                         </button>
                     </form>
