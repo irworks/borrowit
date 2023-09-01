@@ -82,4 +82,15 @@ class ManagerReservationController extends AuthUserController
 
         return redirect(route('reservations.index'));
     }
+
+    public function cancel(Reservation $reservation)
+    {
+        $this->authorize('delete', $reservation);
+
+        // TODO: Notify!
+        $reservation->reservationItemStacks()->delete();
+        $reservation->delete();
+
+        return redirect(route('reservations.index'));
+    }
 }

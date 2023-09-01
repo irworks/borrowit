@@ -11,6 +11,7 @@
             <th>#</th>
             <th>@lang('reservation.from')</th>
             <th>@lang('reservation.to')</th>
+            <th>@lang('reservation.duration')</th>
             <th>@lang('reservation.user')</th>
             <th>@lang('reservation.organisation')</th>
             <th>@lang('general.action')</th>
@@ -18,16 +19,31 @@
 
         <tbody>
             @foreach($reservations as $reservation)
-                <tr>
+                <tr class="@if($reservation->isFulfilled()) inactive @endif">
                     <td>{{ $reservation->id }}</td>
-                    <td>{{ $reservation->from }}</td>
-                    <td>{{ $reservation->to }}</td>
+                    <td>{{ $reservation->from->format('d.m.y H:i') }}</td>
+                    <td>{{ $reservation->to->format('d.m.y H:i') }}</td>
+                    <td>
+                        <span class="badge bg-primary rounded-pill">
+                            {{ $reservation->to->diffInDays($reservation->from) }} @lang('general.days')
+                        </span>
+                    </td>
                     <td>{{ $reservation->user->name }}</td>
                     <td>{{ $reservation->organisation ?? __('general.none') }}</td>
                     <td>
-                        <a class="btn btn-primary" href="{{ route('reservations.collect', ['reservation' => $reservation]) }}">
-                            @lang('reservation.collect')
+                        <a class="btn btn-primary @if($reservation->isFulfilled()) disabled @endif"
+                           href="{{ route('reservations.collect', ['reservation' => $reservation]) }}">
+                            <i class="bi bi-qr-code-scan"></i> @lang('reservation.collect')
                         </a>
+
+                        <form class="mt-1" method="post" action="{{ route('reservations.cancel', ['reservation' => $reservation]) }}">
+                            @csrf
+                            @method('PATCH')
+                            <button type="submit" class="btn btn-outline-danger @if($reservation->isFulfilled()) disabled @endif"
+                               href="{{ route('reservations.collect', ['reservation' => $reservation]) }}">
+                                <i class="bi bi-x-circle"></i> @lang('reservation.cancel')
+                            </button>
+                        </form>
                     </td>
                 </tr>
             @endforeach

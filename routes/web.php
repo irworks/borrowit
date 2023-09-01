@@ -45,6 +45,7 @@ Route::get('/reservations', [\App\Http\Controllers\Manager\ManagerReservationCon
 Route::get('/reservations/{reservation}/collect', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'collect'])->name('reservations.collect');
 Route::get('/reservations/{reservation}/collect/details', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'details'])->name('reservations.details');
 Route::post('/reservations/{reservation}/collect', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'book'])->name('reservations.book');
+Route::patch('/reservations/{reservation}/cancel', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'cancel'])->name('reservations.cancel');
 
 Route::get('/items/{item}', [\App\Http\Controllers\ItemController::class, 'show']);
 Route::get('/items/{item}/scan', [\App\Http\Controllers\ItemController::class, 'showReservationByItemId']);

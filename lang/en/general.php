@@ -17,5 +17,6 @@ return [
     'edit' => 'Edit',
     'show-all' => 'Show all',
     'back' => 'Go back',
-    'pieces' => 'Pieces'
+    'pieces' => 'Pieces',
+    'days' => 'Days'
 ];

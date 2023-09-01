@@ -24,6 +24,16 @@
                             <a class="nav-link" href="{{ route('itemStacks.index') }}">@lang('item-stack.overview')</a>
                         </li>
                     @endif
+
+                    @if(Auth::user()->role >= \App\Models\UserRole::Manager->value)
+                        <li class="nav-item nav-item-admin">
+                            <a class="nav-link" href="{{ route('reservations.index') }}">@lang('reservation.overview')</a>
+                        </li>
+
+                        <li class="nav-item nav-item-admin">
+                            <a class="nav-link" href="{{ route('reservations.index') }}">@lang('booking.overview')</a>
+                        </li>
+                    @endif
                 @endauth
             </ul>
 
@@ -46,7 +56,7 @@
                     @if(auth()->user()->hasCurrentReservation())
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('reservation.edit') }}">
-                                @lang('reservation.current')
+                                <i class="me-1 bi bi-calendar-plus"></i> @lang('reservation.current')
                             </a>
                         </li>
                     @endif
