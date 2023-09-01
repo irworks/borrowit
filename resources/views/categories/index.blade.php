@@ -33,7 +33,8 @@
         <div class="mt-2 d-flex gap-3">
             @foreach($category->topItemStacks as $itemStack)
                 <x-item-box :name="$itemStack->name"
-                            :image="$itemStack->image_uri"
+                            :image="$itemStack->image_uri ?? '/images/placeholder-image.svg'"
+                            :placeholder="!$itemStack->hasImage()"
                             :href="route('itemStack.show', ['category' => $category, 'itemStack' => $itemStack])">
                 </x-item-box>
             @endforeach
