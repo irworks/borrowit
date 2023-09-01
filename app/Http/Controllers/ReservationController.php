@@ -4,8 +4,10 @@ namespace App\Http\Controllers;
 
 use App\Http\Controllers\User\AuthUserController;
 use App\Http\Requests\ReserveItemRequest;
+use App\Http\Requests\UpdateReservationItemRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\ItemStack;
+use App\Models\ReservationItemStack;
 use App\Services\ReservationService;
 use Carbon\Carbon;
 
@@ -67,6 +69,21 @@ class ReservationController extends AuthUserController
             'from' => Carbon::createFromFormat('Y-m-d\TH:i', $data['from']),
             'to' => Carbon::createFromFormat('Y-m-d\TH:i', $data['to']),
         ]);
+
+        return true;
+    }
+
+    public function updateItem(UpdateReservationItemRequest $request, ReservationItemStack $itemStack)
+    {
+        abort_if($itemStack->reservation->user_id !== $this->user()->id, 403);
+
+        $data = $request->validated();
+
+        if ($data['quantity'] <= 0) {
+            $itemStack->delete();
+        } else {
+            $itemStack->update(['quantity' => $data['quantity']]);
+        }
 
         return true;
     }

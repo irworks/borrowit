@@ -39,6 +39,7 @@ Route::get('/reservation/itemStacks/availability', [\App\Http\Controllers\Reserv
 Route::post('/reservation', [\App\Http\Controllers\ReservationController::class, 'submit'])->name('reservation.submit');
 Route::patch('/reservation/interval', [\App\Http\Controllers\ReservationController::class, 'update'])->name('reservation.update');
 Route::post('/reservation/add', [\App\Http\Controllers\ReservationController::class, 'add'])->name('reservation.add-itemstack');
+Route::patch('/reservation/itemStacks/{itemStack}', [\App\Http\Controllers\ReservationController::class, 'updateItem'])->name('reservation.itemStacks');
 
 // manager routes
 Route::get('/reservations', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'index'])->name('reservations.index');

@@ -105,6 +105,7 @@ class ReservationService
             'available' => true,
             'item' => $itemStack,
             'quantity' => $reservationItemStack->quantity,
+            'reservation_item_stack_id' => $reservationItemStack->id,
             'total' => $totalItemsInStack,
             'reserved' => 0,
             'booked' => 0

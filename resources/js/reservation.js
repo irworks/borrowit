@@ -40,6 +40,24 @@ const app = createApp({
             }).catch(error => {
 
             });
+        },
+        increaseQuantity(itemMeta) {
+            axios.patch(`/reservation/itemStacks/${itemMeta.reservation_item_stack_id}`, {
+                quantity: itemMeta.quantity + 1
+            }).then(result => {
+                this.loadItems();
+            }).catch(error => {
+
+            });
+        },
+        decreaseQuantity(itemMeta) {
+            axios.patch(`/reservation/itemStacks/${itemMeta.reservation_item_stack_id}`, {
+                quantity: itemMeta.quantity - 1
+            }).then(result => {
+                this.loadItems();
+            }).catch(error => {
+
+            });
         }
     },
     computed: {

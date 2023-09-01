@@ -43,7 +43,11 @@
                                     </div>
                                 </div>
 
-                                <span class="badge bg-primary rounded-pill">@{{ item.quantity }} @lang('general.pieces')</span>
+                                <div>
+                                    <button class="btn" @click.prevent="decreaseQuantity(item)">-</button>
+                                    <span class="badge bg-primary rounded-pill">@{{ item.quantity }} @lang('general.pieces')</span>
+                                    <button class="btn border-0" @click.prevent="increaseQuantity(item)" :disabled="item.quantity >= item.total">+</button>
+                                </div>
                             </li>
                         </div>
                     </ul>
