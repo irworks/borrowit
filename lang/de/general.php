@@ -18,9 +18,11 @@ return [
     'show-all' => 'Alle anzeigen',
     'pieces' => 'Stück',
     'days' => 'Tage',
-    'created-at' => 'Erstellungsdatum',
+    'created-at' => 'Erstellt am',
     'action' => 'Optionen',
 
     'open-scanner' => 'Scanner öffnen',
-    'list-itemStacks' => 'Reservierte Gegenstände'
+    'list-itemStacks' => 'Reservierte Gegenstände',
+    'active' => 'Aktiv',
+    'inactive' => 'Inaktiv',
 ];

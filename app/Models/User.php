@@ -55,4 +55,9 @@ class User extends Authenticatable
             ->whereNull(['submitted_at', 'fulfilled_at'])
             ->exists();
     }
+
+    public function getCreatedAtStringAttribute(): string
+    {
+        return $this->created_at->format(config('app.time_format'));
+    }
 }

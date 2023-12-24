@@ -38,10 +38,16 @@
         {{ $user->last_login ?? '-' }}
     </td>
     <td>
-        {{ $user->active ?? '-' }}
+        @if(empty($user))
+            -
+        @elseif($user->active)
+            <span class="badge bg-success rounded-pill">@lang('general.active')</span>
+        @else
+            <span class="badge bg-danger rounded-pill">@lang('general.inactive')</span>
+        @endif
     </td>
     <td>
-        {{ $user->created_at ?? '-' }}
+        {{ $user->created_at_string ?? '-' }}
     </td>
     <td>
         <button type="submit" form="user-{{ $user->id ?? 0 }}" class="btn btn-primary">
