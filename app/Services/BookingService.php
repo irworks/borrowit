@@ -19,10 +19,16 @@ class BookingService
      * Create a new booking from a reservation and update the reservation.
      * @param Reservation $reservation
      * @param array $itemIds
-     * @return void
+     * @return bool
      */
-    public function store(Reservation $reservation, array $itemIds): void
+    public function store(Reservation $reservation, array $itemIds): bool
     {
+        // prevent duplicate bookings from the same reservations
+        if (Booking::whereReservationId($reservation->id)->exists()) {
+            return false;
+        }
+
+        // create the booking
         $booking = Booking::create([
             'from' => $reservation->from,
             'to' => $reservation->to,
@@ -37,7 +43,7 @@ class BookingService
             $booking->items()->create(['item_id' => $itemId]);
         }
 
-        $reservation->update(['fulfilled_at' => Carbon::now()->toDateTimeString()]);
+        return $reservation->update(['fulfilled_at' => Carbon::now()->toDateTimeString()]);
     }
 
     /**

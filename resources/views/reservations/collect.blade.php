@@ -40,6 +40,10 @@
                         </p>
                     </div>
                 @endif
+
+                <div class="mt-2 text-center" v-if="error">
+                    <span class="text-danger"><i class="bi bi-exclamation-circle"></i> @{{ errorMessage }}</span>
+                </div>
             </item-scan-app>
         </div>
     @endif
