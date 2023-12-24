@@ -18,8 +18,16 @@
                     <label for="from" class="form-label"><i class="bi bi-calendar-event"></i> @lang('reservation.from')</label>
                     <input type="datetime-local" v-model="from" @change="updateTimes" class="form-control" name="from" id="from">
 
-                    <label for="to" class="form-label"><i class="bi bi-calendar2-event"></i> @lang('reservation.to')</label>
-                    <input type="datetime-local" v-model="to" @change="updateTimes" class="form-control" name="to" id="to">
+                    <div class="mt-2">
+                        <label for="to" class="form-label"><i class="bi bi-calendar2-event"></i> @lang('reservation.to')
+                        </label>
+                        <input type="datetime-local" v-model="to" @change="updateTimes" class="form-control"
+                               :class="{'is-invalid' : error}" name="to" id="to">
+
+                        <div v-if="error" class="invalid-feedback">
+                            @{{ errorMessage }}
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-0 col-md-1"></div>

@@ -141,6 +141,7 @@ return [
     'uppercase'            => ':Attribute muss in Großbuchstaben sein.',
     'url'                  => ':Attribute muss eine URL sein.',
     'uuid'                 => ':Attribute muss ein UUID sein.',
+    'valid_date_range'     => 'Das Startdatum muss vor dem Enddatum liegen.',
     'attributes'           => [
         'address'                  => 'Adresse',
         'age'                      => 'Alter',
