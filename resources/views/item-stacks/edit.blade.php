@@ -1,7 +1,7 @@
 @extends('layouts.page')
 
 @section('page-content')
-    <h1>{{ __('items-stacks.edit') }}</h1>
+    <h1>{{ __('item-stack.edit') }}</h1>
 
     <x-delete-section></x-delete-section>
 
@@ -55,7 +55,7 @@
 
                 <div class="d-flex justify-content-end">
                     <button type="submit" class="btn btn-primary">
-                        <i class="bi bi-save"></i> @lang('itemStack.save')
+                        <i class="bi bi-save"></i> @lang('item-stack.save')
                     </button>
                 </div>
             </form>
