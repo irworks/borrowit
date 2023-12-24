@@ -12,15 +12,6 @@ return [
     |
     */
 
-    'yes' => 'Ja',
-    'no' => 'Nein',
-    'edit' => 'Bearbeiten',
-    'show-all' => 'Alle anzeigen',
-    'pieces' => 'Stück',
-    'days' => 'Tage',
-    'created-at' => 'Erstellungsdatum',
-    'action' => 'Optionen',
-
-    'open-scanner' => 'Scanner öffnen',
-    'list-itemStacks' => 'Reservierte Gegenstände'
+    'overview' => 'Kategorien',
+    '',
 ];
