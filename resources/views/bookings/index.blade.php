@@ -4,19 +4,22 @@
     <h1>@lang('booking.list')</h1>
     <p>@lang('booking.list-description')</p>
 
-    <x-delete-section></x-delete-section>
-
-    <table class="table align-middle">
-        <thead class="table-dark text-uppercase">
+    @if(count($bookings) <= 0)
+        <div class="mt-4 d-flex w-100 justify-content-center align-items-center">
+            <h2>@lang('booking.none')</h2>
+        </div>
+    @else
+        <table class="table align-middle">
+            <thead class="table-dark text-uppercase">
             <th>#</th>
             <th>@lang('reservation.from')</th>
             <th>@lang('reservation.to')</th>
             <th>@lang('reservation.user')</th>
             <th>@lang('reservation.organisation')</th>
             <th>@lang('general.action')</th>
-        </thead>
+            </thead>
 
-        <tbody>
+            <tbody>
             @foreach($bookings as $booking)
                 <tr>
                     <td>{{ $booking->id }}</td>
@@ -31,7 +34,7 @@
                     </td>
                 </tr>
             @endforeach
-        </tbody>
-    </table>
-
+            </tbody>
+        </table>
+    @endif
 @endsection

@@ -51,6 +51,7 @@ Route::patch('/reservations/{reservation}/cancel', [\App\Http\Controllers\Manage
 Route::get('/items/{item}', [\App\Http\Controllers\ItemController::class, 'show']);
 Route::get('/items/{item}/scan', [\App\Http\Controllers\ItemController::class, 'showReservationByItemId']);
 
+Route::get('/bookings', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'index'])->name('booking.index');
 Route::get('/bookings/{booking}/return', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'return'])->name('booking.return');
 Route::get('/bookings/{booking}/return/details', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'details'])->name('booking.details');
 Route::post('/bookings/{booking}/return', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'complete'])->name('booking.complete');

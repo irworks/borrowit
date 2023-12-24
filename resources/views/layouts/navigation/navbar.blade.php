@@ -31,7 +31,7 @@
                         </li>
 
                         <li class="nav-item nav-item-admin">
-                            <a class="nav-link" href="{{ route('reservations.index') }}">@lang('booking.overview')</a>
+                            <a class="nav-link" href="{{ route('booking.index') }}">@lang('booking.overview')</a>
                         </li>
                     @endif
                 @endauth

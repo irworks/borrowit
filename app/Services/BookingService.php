@@ -8,6 +8,13 @@ use Carbon\Carbon;
 
 class BookingService
 {
+    public function index()
+    {
+        return Booking::whereNull('returned_at')
+            ->orderBy('to')
+            ->orderBy('from');
+    }
+
     /**
      * Create a new booking from a reservation and update the reservation.
      * @param Reservation $reservation
