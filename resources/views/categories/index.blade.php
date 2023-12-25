@@ -1,10 +1,11 @@
 @extends('layouts.page')
 
 @section('page-content')
-    @can('create')
+    @can('create', \App\Models\Category::class)
         <div class="p-3 alert alert-info">
             <h5>@lang('general.admin-options')</h5>
-            <button class="btn btn-primary"><i class="bi bi-journal-plus"></i> @lang('category.new')</button>
+            <a href="{{ route('categories.create') }}" class="btn btn-primary">
+                <i class="bi bi-journal-plus"></i> @lang('category.create')</a>
         </div>
     @endcan
 
