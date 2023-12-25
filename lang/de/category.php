@@ -13,5 +13,9 @@ return [
     */
 
     'overview' => 'Kategorien',
-    '',
+    'name' => 'Kategorie Name',
+    'description' => 'Kategorie Beschreibung',
+    'is_organisation_required' => 'Mitgliedschaft in einer Organisation zur Buchung erforderlich',
+    'save' => 'Kategorie speichern',
+    'create' => 'Neue Kategorie',
 ];

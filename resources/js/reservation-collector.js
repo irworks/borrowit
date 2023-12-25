@@ -10,6 +10,8 @@ const app = createApp({
             loading: false,
             reservationId: -1,
             itemStacks: [],
+            error: false,
+            errorMessage: '',
         }
     },
     watch: {},
@@ -27,7 +29,14 @@ const app = createApp({
             axios.post(`/reservations/${this.reservationId}/collect`, {
                 itemIds: scannedItemIds
             }).then(result => {
-                // TODO: Redirect away? Show message?
+                let success = result.data.success;
+                if (success) {
+                    window.location = '/';
+                    return;
+                }
+
+                this.errorMessage = 'Failed to create a booking based on the current reservation.';
+                this.error = true;
             });
         }
     },

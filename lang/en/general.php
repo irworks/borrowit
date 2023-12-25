@@ -18,5 +18,6 @@ return [
     'show-all' => 'Show all',
     'back' => 'Go back',
     'pieces' => 'Pieces',
-    'days' => 'Days'
+    'days' => 'Days',
+    'none' => 'None'
 ];

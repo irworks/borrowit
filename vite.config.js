@@ -11,6 +11,7 @@ export default defineConfig({
                 'resources/js/reservation.js',
                 'resources/js/reservation-collector.js',
                 'resources/js/booking-returner.js',
+                'resources/js/item-stack-show.js',
             ],
             refresh: true,
         }),

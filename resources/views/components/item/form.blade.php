@@ -39,7 +39,7 @@
 
         @if(!empty($item))
             <a href="{{ route('items.edit', ['item' => $item, 'itemStack' => $itemStack]) }}" type="button" class="btn btn-primary ms-2">
-                <i class="bi bi-three-dots-vertical"></i>
+                <i class="bi bi-pencil-square"></i>
             </a>
 
             <button type="button" class="btn btn-danger ms-2"

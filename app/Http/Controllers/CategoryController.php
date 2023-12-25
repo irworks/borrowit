@@ -21,16 +21,37 @@ class CategoryController extends Controller
     {
         $this->authorize('create', Category::class);
 
-        return Category::create($request->validated());
+        $data = $request->validated();
+        $data['is_organisation_required'] = $request->has('is_organisation_required');
+
+        $category = Category::create($data);
+        return redirect(route('categories.show', ['category' => $category]));
+    }
+
+    public function edit(Category $category)
+    {
+        $this->authorize('update', $category);
+
+        return view('categories.edit', ['category' => $category]);
+    }
+
+    public function create()
+    {
+        $this->authorize('create', Category::class);
+
+        return view('categories.create');
     }
 
     public function update(CategoryRequest $request, Category $category)
     {
         $this->authorize('update', $category);
 
-        $category->update($request->validated());
+        $data = $request->validated();
+        $data['is_organisation_required'] = $request->has('is_organisation_required');
 
-        return $category;
+        $category->update($data);
+
+        return redirect(route('categories.show', ['category' => $category]));
     }
 
     public function destroy(Category $category)
@@ -39,6 +60,6 @@ class CategoryController extends Controller
 
         $category->delete();
 
-        return response()->json();
+        return redirect(route('categories.index'));
     }
 }

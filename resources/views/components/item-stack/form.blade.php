@@ -1,5 +1,5 @@
 @props(['itemStack' => null, 'categories' => []])
-<tr>
+<tr class="@if(empty($itemStack)) table-active @endif">
     <td>
         {{ $itemStack->id ?? '' }}
 
@@ -13,7 +13,9 @@
         </form>
     </td>
     <td>
-        <img style="max-height: 50px;" src="{{ $itemStack->image_uri ?? '' }}" alt="{{ $itemStack->name ?? __('item-stack.empty-image') }}">
+        @if(!empty($itemStack))
+            <img style="max-height: 50px;" src="{{ $itemStack->image_uri ?? '' }}" alt="{{ $itemStack->name ?? __('item-stack.empty-image') }}">
+        @endif
     </td>
     <td>
         <label class="visually-hidden" for="name">@lang('item-stack.name')</label>
@@ -36,7 +38,7 @@
         </select>
     </td>
     <td>
-        {{ $itemStack->created_at ?? '-' }}
+        {{ $itemStack->created_at_string ?? '-' }}
     </td>
     <td>
         <button type="submit" form="item-stack-{{ $itemStack->id ?? 0 }}" class="btn btn-primary">
@@ -49,7 +51,7 @@
 
         @if(!empty($itemStack))
             <a href="{{ route('itemStacks.edit', ['itemStack' => $itemStack]) }}" type="button" class="btn btn-primary ms-2">
-                <i class="bi bi-three-dots-vertical"></i>
+                <i class="bi bi-pencil-square"></i>
             </a>
 
             <button type="button" class="btn btn-danger ms-2"

@@ -105,14 +105,21 @@ class ReservationController extends AuthUserController
 
     /**
      * Submit the current reservation.
-     * @return void
+     * @return \Illuminate\Http\RedirectResponse
      */
     public function submit()
     {
         $reservation = $this->reservationService->currentReservationForUser($this->user());
-        $result = $this->reservationService->submit($reservation);
-        dd($result);
+        $success = $this->reservationService->submit($reservation);
+        if ($success === false) {
+            return back()->withErrors([__('reservation.failed')]);
+        }
 
-        // TODO: Submit reservation, set submitted_at = NOW()
+        return redirect(route('reservation.done'));
+    }
+
+    public function done()
+    {
+        return view('reservation.done');
     }
 }

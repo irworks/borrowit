@@ -17,4 +17,6 @@ return [
     'return' => 'Rückgabe',
     'title' => 'Buchung',
     'list-booked' => 'Gebuchte Gegenstände',
+    'list' => 'Buchungen',
+    'none' => 'Aktuell keine offenen Buchungen'
 ];

@@ -9,7 +9,9 @@ const app = createApp({
             from: null,
             to: null,
             valid: false,
-            items: []
+            items: [],
+            error: false,
+            errorMessage: '',
         }
     },
     watch: {
@@ -31,15 +33,18 @@ const app = createApp({
         },
         updateTimes() {
             this.loading = true;
+            this.error = false;
+            this.errorMessage = '';
 
             axios.patch(`/reservation/interval`, {
                 from: this.from,
                 to: this.to,
+            }).catch(error => {
+                this.error = true;
+                this.errorMessage = error.response.data.message;
             }).then(result => {
                 this.loadItems();
-            }).catch(error => {
-
-            });
+            })
         },
         increaseQuantity(itemMeta) {
             axios.patch(`/reservation/itemStacks/${itemMeta.reservation_item_stack_id}`, {

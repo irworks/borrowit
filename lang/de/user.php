@@ -23,5 +23,5 @@ return [
 
     'role' => 'Rolle',
     'last-login' => 'Letzter Login',
-    'active' => 'Accountaktivierung',
+    'active' => 'Status',
 ];

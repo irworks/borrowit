@@ -13,26 +13,26 @@ class CategoryPolicy
 
     public function create(User $user): bool
     {
-        return $user->role >= UserRole::Admin;
+        return $user->role >= UserRole::Admin->value;
     }
 
     public function update(User $user, Category $category): bool
     {
-        return $user->role >= UserRole::Admin;
+        return $user->role >= UserRole::Admin->value;
     }
 
     public function delete(User $user, Category $category): bool
     {
-        return $user->role >= UserRole::Admin;
+        return $user->role >= UserRole::Admin->value;
     }
 
     public function restore(User $user, Category $category): bool
     {
-        return $user->role >= UserRole::Admin;
+        return $user->role >= UserRole::Admin->value;
     }
 
     public function forceDelete(User $user, Category $category): bool
     {
-        return $user->role >= UserRole::Admin;
+        return $user->role >= UserRole::Admin->value;
     }
 }

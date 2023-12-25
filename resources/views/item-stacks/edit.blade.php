@@ -68,8 +68,8 @@
                 <h4 class="p-3text-center">@lang('item-stack.no-items')</h4>
             @else
                 <h4 class="p-3">@lang('item-stack.items')</h4>
-                <table class="table align-middle text-uppercase">
-                    <thead class="table-dark">
+                <table class="table align-middle">
+                    <thead class="table-dark text-uppercase">
                     <th>#</th>
                     <th>@lang('item.name')</th>
                     <th>@lang('item.is-intact')</th>

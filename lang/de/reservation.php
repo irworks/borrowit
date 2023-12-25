@@ -13,7 +13,7 @@ return [
     */
 
     'overview' => 'Reservierungen',
-    'current' => 'aktuelle Reservierung',
+    'current' => 'Aktuelle Reservierung',
     'list' => 'Reservierungen',
     'from' => 'Buchungsbeginn',
     'to' => 'Buchungsende',
@@ -28,6 +28,11 @@ return [
     'items' => 'Hinzugefügte Gegenstände',
     'submit' => 'Gegenstände reservieren',
 
+    'item-list' => 'Gegenstände',
+
     'add-item' => 'Der Reservierung hinzufügen',
     'reserve' => 'Der Reservierung hinzufügen',
+
+    'thank-you' => 'Reservierung Erfolgreich',
+    'reservation-complete' => 'Vielen Dank. Deine Reservierung war erfolgreich und wurde entgegengenommen.'
 ];

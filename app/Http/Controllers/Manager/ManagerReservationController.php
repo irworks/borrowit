@@ -72,11 +72,11 @@ class ManagerReservationController extends AuthUserController
         $this->authorize('collect', $reservation);
         $data = $request->validated();
 
-        $bookingService->store($reservation, $data['itemIds']);
+        $success = $bookingService->store($reservation, $data['itemIds']);
 
         if (request()->expectsJson()) {
             return response()->json([
-                'result' => true,
+                'success' => $success,
             ]);
         }
 
