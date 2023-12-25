@@ -20,6 +20,7 @@ return [
     'days' => 'Tage',
     'created-at' => 'Erstellt am',
     'action' => 'Optionen',
+    'back' => 'Zurück',
 
     'open-scanner' => 'Scanner öffnen',
     'list-itemStacks' => 'Reservierte Gegenstände',
