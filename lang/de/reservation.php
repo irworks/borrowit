@@ -28,6 +28,8 @@ return [
     'items' => 'Hinzugefügte Gegenstände',
     'submit' => 'Gegenstände reservieren',
 
+    'item-list' => 'Gegenstände',
+
     'add-item' => 'Der Reservierung hinzufügen',
     'reserve' => 'Der Reservierung hinzufügen',
 

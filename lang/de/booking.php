@@ -15,5 +15,5 @@ return [
     'overview' => 'Buchungen',
     'submit' => 'Buchung abschließen',
     'list' => 'Buchungen',
-    'none' => 'Bisher keine Buchungen'
+    'none' => 'Aktuell keine offenen Buchungen'
 ];

@@ -9,11 +9,10 @@
     <table class="table align-middle">
         <thead class="table-dark text-uppercase">
             <th>#</th>
-            <th>@lang('reservation.from')</th>
-            <th>@lang('reservation.to')</th>
             <th>@lang('reservation.duration')</th>
             <th>@lang('reservation.user')</th>
-            <th>@lang('reservation.organisation')</th>
+            <th class="d-none d-md-table-cell">@lang('reservation.organisation')</th>
+            <th>@lang('reservation.item-list')</th>
             <th>@lang('general.action')</th>
         </thead>
 
@@ -21,15 +20,22 @@
             @foreach($reservations as $reservation)
                 <tr class="@if($reservation->isFulfilled()) inactive @endif">
                     <td>{{ $reservation->id }}</td>
-                    <td>{{ $reservation->from->format('d.m.y H:i') }}</td>
-                    <td>{{ $reservation->to->format('d.m.y H:i') }}</td>
-                    <td>
+                    <td class="text-center">
                         <span class="badge bg-primary rounded-pill">
                             {{ $reservation->to->diffInDays($reservation->from) }} @lang('general.days')
-                        </span>
+                        </span><br>
+                        {{ $reservation->from->format('d.m.y H:i') }}<br>{{ $reservation->to->format('d.m.y H:i') }}
                     </td>
-                    <td>{{ $reservation->user->name }}</td>
-                    <td>{{ $reservation->organisation ?? __('general.none') }}</td>
+                    <td>
+                        {{ $reservation->user->name }}
+                        <div class="d-block d-md-none">
+                            <small>{{ $reservation->organisation?->name }}</small>
+                        </div>
+                    </td>
+                    <td class="d-none d-md-table-cell">{{ $reservation->organisation->name ?? __('general.none') }}</td>
+                    <td>
+                        {{ implode(', ', $reservation->reservationItemStackNames()->toArray()) }}
+                    </td>
                     <td>
                         <a class="btn btn-primary @if($reservation->isFulfilled()) disabled @endif"
                            href="{{ route('reservations.collect', ['reservation' => $reservation]) }}">

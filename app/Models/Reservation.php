@@ -45,4 +45,11 @@ class Reservation extends Model
     {
         return $this->hasMany(ReservationItemStack::class);
     }
+
+    public function reservationItemStackNames()
+    {
+        return $this->reservationItemStacks()
+            ->join('item_stacks', 'item_stack_id', '=', 'item_stacks.id')
+            ->pluck('name');
+    }
 }
