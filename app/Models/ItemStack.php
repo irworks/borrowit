@@ -30,4 +30,9 @@ class ItemStack extends Model
     {
         return !empty($this->image_uri);
     }
+
+    public function getCreatedAtStringAttribute(): string
+    {
+        return $this->created_at->format(config('app.time_format'));
+    }
 }

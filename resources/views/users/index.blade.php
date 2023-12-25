@@ -6,8 +6,8 @@
 
     <x-delete-section></x-delete-section>
 
-    <table class="table align-middle text-uppercase">
-        <thead class="table-dark">
+    <table class="table align-middle">
+        <thead class="table-dark text-uppercase">
             <th>#</th>
             <th>@lang('user.name')</th>
             <th>@lang('user.email')</th>

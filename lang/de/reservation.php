@@ -30,4 +30,7 @@ return [
 
     'add-item' => 'Der Reservierung hinzufügen',
     'reserve' => 'Der Reservierung hinzufügen',
+
+    'thank-you' => 'Reservierung Erfolgreich',
+    'reservation-complete' => 'Vielen Dank. Deine Reservierung war erfolgreich und wurde entgegengenommen.'
 ];
