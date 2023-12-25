@@ -14,4 +14,7 @@ return [
 
     'overview' => 'Buchungen',
     'submit' => 'Buchung abschließen',
+    'return' => 'Rückgabe',
+    'title' => 'Buchung',
+    'list-booked' => 'Gebuchte Gegenstände',
 ];

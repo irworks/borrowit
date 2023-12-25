@@ -22,5 +22,7 @@ return [
     'action' => 'Optionen',
 
     'open-scanner' => 'Scanner öffnen',
-    'list-itemStacks' => 'Reservierte Gegenstände'
+    'list-itemStacks' => 'Reservierte Gegenstände',
+
+    'scanned' => 'Gescannt',
 ];
