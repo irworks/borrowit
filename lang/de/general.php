@@ -25,4 +25,5 @@ return [
     'list-itemStacks' => 'Reservierte Gegenstände',
     'active' => 'Aktiv',
     'inactive' => 'Inaktiv',
+    'none' => 'Keine'
 ];

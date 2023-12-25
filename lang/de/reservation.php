@@ -13,7 +13,7 @@ return [
     */
 
     'overview' => 'Reservierungen',
-    'current' => 'aktuelle Reservierung',
+    'current' => 'Aktuelle Reservierung',
     'list' => 'Reservierungen',
     'from' => 'Buchungsbeginn',
     'to' => 'Buchungsende',

@@ -1,5 +1,9 @@
 @extends('layouts.page')
 
+@section('addition-scripts')
+    @vite(['resources/js/item-stack-show.js'])
+@endsection
+
 @section('page-content')
     <div class="mb-3">
         <a class="ps-2 pe-2 icon-link icon-link-hover border-end" href="{{ route('categories.show', ['category' => $category]) }}">
@@ -14,7 +18,7 @@
     </div>
 
     <div class="row">
-        <div class="col-8">
+        <div class="col-12 col-md-8 mt-4 mt-md-0">
             <h1>{{ $itemStack->name }}</h1>
 
             <div class="row">
@@ -32,7 +36,7 @@
             </div>
         </div>
 
-        <div class="col-4">
+        <div class="col-12 col-md-4 mt-4 mt-md-0">
             <div class="card">
                 <div class="card-body">
                     <h5 class="card-title">@lang('reservation.add-item')</h5>
@@ -42,16 +46,27 @@
                         @csrf
                         <input type="hidden" name="item_stack_id" value="{{ $itemStack->id }}">
 
-                        @if($itemStack->items()->count() > 1)
-                            <label for="quantity" class="form-label">@lang('item-stack.quantity')</label>
-                            <input type="range" class="form-range" name="quantity" min="1" max="{{ $itemStack->items()->count() }}" id="quantity">
-                        @else
-                            <input type="hidden" name="quantity" value="1">
-                        @endif
+                        <script>
+                            const ITEM_STACK_MAX_AMOUNT = {{ $itemStack->items()->count() }};
+                            const VUE_LANG = {
+                                quantityLabel: "{{ __('item-stack.quantity') }}",
+                                reserve: "{{ __('reservation.reserve') }}",
+                            };
+                        </script>
+                        <div id="item-stack-show-app">
+                            <input type="hidden" name="item_stack_id" value="{{ $itemStack->id }}">
 
-                        <button type="submit" class="btn btn-primary" @if($itemStack->items()->count() <= 0) disabled @endif>
-                            <i class="me-1 bi bi-calendar-plus"></i> @lang('reservation.reserve')
-                        </button>
+                            @if($itemStack->items()->count() > 1)
+                                <label for="quantity" class="form-label">@lang('item-stack.quantity')</label>
+                                <input type="range" class="form-range" name="quantity" min="1" max="{{ $itemStack->items()->count() }}" id="quantity">
+                            @else
+                                <input type="hidden" name="quantity" value="1">
+                            @endif
+
+                            <button type="submit" class="btn btn-primary" @if($itemStack->items()->count() <= 0) disabled @endif>
+                                <i class="me-1 bi bi-calendar-plus"></i> @lang('reservation.reserve')
+                            </button>
+                        </div>
                     </form>
                 </div>
                 <div class="card-footer">
