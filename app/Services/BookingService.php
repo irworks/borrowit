@@ -4,6 +4,7 @@ namespace App\Services;
 
 use App\Models\Booking;
 use App\Models\Reservation;
+use App\Models\User;
 use Carbon\Carbon;
 
 class BookingService
@@ -13,6 +14,19 @@ class BookingService
         return Booking::whereNull('returned_at')
             ->orderBy('to')
             ->orderBy('from');
+    }
+
+    public function indexByUser(User $user, bool $onlyOpen)
+    {
+        $bookings = Booking::whereUserId($user->id)
+            ->orderBy('to')
+            ->orderBy('from');
+
+        if ($onlyOpen) {
+            $bookings = $bookings->whereNull('returned_at');
+        }
+
+        return $bookings;
     }
 
     /**

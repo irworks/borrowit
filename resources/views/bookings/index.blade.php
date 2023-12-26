@@ -6,7 +6,7 @@
 
     @if(count($bookings) <= 0)
         <div class="mt-4 d-flex w-100 justify-content-center align-items-center">
-            <h2>@lang('booking.none')</h2>
+            <h2>@lang('booking.none-open')</h2>
         </div>
     @else
         <table class="table align-middle">

@@ -19,6 +19,18 @@ class ReservationService
             ->orderBy('from');
     }
 
+    public function indexByUser(User $user, bool $onlyOpen)
+    {
+        $reservations = Reservation::whereUserId($user->id)
+            ->orderBy('fulfilled_at')
+            ->orderBy('from');
+
+        if ($onlyOpen) {
+            $reservations = $reservations->whereNull('fulfilled_at');
+        }
+        return $reservations;
+    }
+
     public function reservationByItem(Item $item): ?Reservation
     {
         return $this->index()->whereNull('fulfilled_at')

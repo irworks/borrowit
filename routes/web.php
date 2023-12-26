@@ -41,6 +41,7 @@ Route::post('/reservation', [\App\Http\Controllers\ReservationController::class,
 Route::patch('/reservation/interval', [\App\Http\Controllers\ReservationController::class, 'update'])->name('reservation.update');
 Route::post('/reservation/add', [\App\Http\Controllers\ReservationController::class, 'add'])->name('reservation.add-itemstack');
 Route::patch('/reservation/itemStacks/{itemStack}', [\App\Http\Controllers\ReservationController::class, 'updateItem'])->name('reservation.itemStacks');
+Route::delete('/reservation/{reservation}', [\App\Http\Controllers\ReservationController::class, 'cancel'])->name('reservation.cancel');
 
 // manager routes
 Route::get('/reservations', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'index'])->name('reservations.index');
@@ -56,3 +57,5 @@ Route::get('/bookings', [\App\Http\Controllers\Manager\ManagerBookingController:
 Route::get('/bookings/{booking}/return', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'return'])->name('booking.return');
 Route::get('/bookings/{booking}/return/details', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'details'])->name('booking.details');
 Route::post('/bookings/{booking}/return', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'complete'])->name('booking.complete');
+
+Route::get('/profile/bookings', [\App\Http\Controllers\User\UserBookingController::class, 'index'])->name('user.booking.index');

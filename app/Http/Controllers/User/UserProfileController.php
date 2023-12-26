@@ -10,7 +10,7 @@ class UserProfileController extends AuthUserController
 {
     public function edit(OrganisationService $organisationService)
     {
-        return view('profile.edit', [
+        return view('user.profile.edit', [
             'user' => auth()->user(), 'organisations' => $organisationService->selectArray(true)
         ]);
     }
