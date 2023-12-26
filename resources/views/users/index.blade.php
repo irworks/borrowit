@@ -4,7 +4,7 @@
     <h1>@lang('user.overview')</h1>
     <p>@lang('user.overview-description')</p>
 
-    <x-delete-section></x-delete-section>
+    <x-delete-section />
 
     <table class="table align-middle">
         <thead class="table-dark text-uppercase">

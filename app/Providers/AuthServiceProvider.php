@@ -3,13 +3,16 @@
 namespace App\Providers;
 
 // use Illuminate\Support\Facades\Gate;
+use App\Http\Controllers\Admin\AdminSettingsController;
 use App\Models\Booking;
 use App\Models\Category;
 use App\Models\Item;
 use App\Models\ItemStack;
 use App\Models\Organisation;
+use App\Models\RegisterDomain;
 use App\Models\Reservation;
 use App\Models\User;
+use App\Policies\AdminSettingsPolicy;
 use App\Policies\BookingPolicy;
 use App\Policies\CategoryPolicy;
 use App\Policies\ItemPolicy;
@@ -35,6 +38,7 @@ class AuthServiceProvider extends ServiceProvider
         User::class => UserPolicy::class,
         Reservation::class => ReservationPolicy::class,
         Booking::class => BookingPolicy::class,
+        RegisterDomain::class => AdminSettingsPolicy::class,
     ];
 
     /**

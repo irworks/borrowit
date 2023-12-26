@@ -23,6 +23,10 @@
                         <li class="nav-item nav-item-admin">
                             <a class="nav-link" href="{{ route('itemStacks.index') }}">@lang('item-stack.overview')</a>
                         </li>
+
+                        <li class="nav-item nav-item-admin">
+                            <a class="nav-link" href="{{ route('admin.settings') }}">@lang('settings.admin')</a>
+                        </li>
                     @endif
 
                     @if(Auth::user()->role >= \App\Models\UserRole::Manager->value)

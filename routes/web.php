@@ -59,3 +59,9 @@ Route::get('/bookings/{booking}/return/details', [\App\Http\Controllers\Manager\
 Route::post('/bookings/{booking}/return', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'complete'])->name('booking.complete');
 
 Route::get('/profile/bookings', [\App\Http\Controllers\User\UserBookingController::class, 'index'])->name('user.booking.index');
+
+Route::get('/settings', [\App\Http\Controllers\Admin\AdminSettingsController::class, 'index'])->name('admin.settings');
+Route::post('/settings', [\App\Http\Controllers\Admin\AdminSettingsController::class, 'store'])->name('admin.settings');
+Route::patch('/settings/domains/{domain}', [\App\Http\Controllers\Admin\AdminSettingsController::class, 'updateDomain'])->name('admin.settings.domain');
+Route::delete('/settings/domains/{domain}', [\App\Http\Controllers\Admin\AdminSettingsController::class, 'deleteDomain'])->name('admin.settings.domain');
+Route::post('/settings/domains', [\App\Http\Controllers\Admin\AdminSettingsController::class, 'storeDomain'])->name('admin.settings.domain.store');
