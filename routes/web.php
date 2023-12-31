@@ -25,7 +25,8 @@ Route::resource('/organisations', App\Http\Controllers\Manager\OrganisationContr
 Route::resource('/users', App\Http\Controllers\Admin\UserController::class);
 
 Route::resource('/itemStacks', App\Http\Controllers\Admin\ItemStackController::class);
-Route::resource('/itemStacks/{itemStack}/items', App\Http\Controllers\Admin\ItemStackController::class);
+Route::resource('/itemStacks/{itemStack}/items', App\Http\Controllers\Admin\ItemController::class);
+Route::get('/itemStacks/{itemStack}/items/{item}/qr', [App\Http\Controllers\Admin\ItemStackController::class, 'generateQrCode'])->name('items.qr');
 
 // user routes
 Route::get('/profile', [\App\Http\Controllers\User\UserProfileController::class, 'edit']);
@@ -50,8 +51,8 @@ Route::get('/reservations/{reservation}/collect/details', [\App\Http\Controllers
 Route::post('/reservations/{reservation}/collect', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'book'])->name('reservations.book');
 Route::patch('/reservations/{reservation}/cancel', [\App\Http\Controllers\Manager\ManagerReservationController::class, 'cancel'])->name('reservations.cancel');
 
-Route::get('/items/{item}', [\App\Http\Controllers\ItemController::class, 'show']);
-Route::get('/items/{item}/scan', [\App\Http\Controllers\ItemController::class, 'showReservationByItemId']);
+Route::get('/items/{item}', [\App\Http\Controllers\Admin\ItemController::class, 'show']);
+Route::get('/items/{item}/scan', [\App\Http\Controllers\Admin\ItemController::class, 'showReservationByItemId'])->name('items.scan');
 
 Route::get('/bookings', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'index'])->name('booking.index');
 Route::get('/bookings/{booking}/return', [\App\Http\Controllers\Manager\ManagerBookingController::class, 'return'])->name('booking.return');

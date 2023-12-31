@@ -1,29 +1,27 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use App\Http\Requests\ItemRequest;
 use App\Models\Item;
-use App\Models\Reservation;
+use App\Models\ItemStack;
 use App\Services\ReservationService;
 
 class ItemController extends Controller
 {
-    public function index()
-    {
-        $this->authorize('viewAny', Item::class);
-
-        return Item::all();
-    }
-
-    public function store(ItemRequest $request)
+    public function store(ItemStack $itemStack, ItemRequest $request)
     {
         $this->authorize('create', Item::class);
+        $data = $request->validated();
+        $data['is_intact'] = $request->has('is_intact');
 
-        return Item::create($request->validated());
+        $itemStack->items()->create($data);
+
+        return back();
     }
 
-    public function show(Item $item)
+    public function show(ItemStack $itemStack, Item $item)
     {
         $this->authorize('view', $item);
 
@@ -44,21 +42,23 @@ class ItemController extends Controller
         return redirect(route('reservations.collect', ['reservation' => $reservation]));
     }
 
-    public function update(ItemRequest $request, Item $item)
+    public function update(ItemRequest $request, ItemStack $itemStack, Item $item)
     {
         $this->authorize('update', $item);
+        $data = $request->validated();
+        $data['is_intact'] = $request->has('is_intact');
 
-        $item->update($request->validated());
+        $item->update();
 
-        return $item;
+        return back();
     }
 
-    public function destroy(Item $item)
+    public function destroy(ItemStack $itemStack, Item $item)
     {
         $this->authorize('delete', $item);
 
         $item->delete();
 
-        return response()->json();
+        return back();
     }
 }
