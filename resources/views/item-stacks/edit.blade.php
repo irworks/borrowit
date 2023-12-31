@@ -29,8 +29,8 @@
 
                     <div class="col-6">
                         <div class="mb-3">
-                            <label for="formFile" class="form-label">Default file input example</label>
-                            <input class="form-control" type="file" id="formFile">
+                            <label for="image" class="form-label">@lang('item-stack.image')</label>
+                            <input class="form-control" type="file" id="image" name="image">
                         </div>
 
                         <div class="mb-3">

@@ -26,6 +26,11 @@ class ItemStack extends Model
         return $this->hasMany(Item::class);
     }
 
+    public function intactItems(): \Illuminate\Database\Eloquent\Relations\HasMany|\LaravelIdea\Helper\App\Models\_IH_Item_QB
+    {
+        return $this->items()->where('is_intact', '=', true);
+    }
+
     public function hasImage(): bool
     {
         return !empty($this->image_uri);

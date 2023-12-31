@@ -13,6 +13,9 @@
         </form>
     </td>
     <td>
+        <input type="hidden" name="item_stack_id" form="item-{{ $item->id ?? 0 }}"
+               value="{{ $itemStack->id ?? '' }}">
+
         <label class="visually-hidden" for="name">@lang('item.name')</label>
         <input class="form-control" type="text" id="name" name="name" form="item-{{ $item->id ?? 0 }}"
                 value="{{ $item->name ?? '' }}" placeholder="@lang('item.name')" required>
@@ -40,6 +43,10 @@
         @if(!empty($item))
             <a href="{{ route('items.edit', ['item' => $item, 'itemStack' => $itemStack]) }}" type="button" class="btn btn-primary ms-2">
                 <i class="bi bi-pencil-square"></i>
+            </a>
+
+            <a href="{{ route('items.qr', ['item' => $item, 'itemStack' => $itemStack]) }}" type="button" class="btn btn-primary ms-2">
+                <i class="bi bi-qr-code"></i>
             </a>
 
             <button type="button" class="btn btn-danger ms-2"

@@ -110,7 +110,7 @@ class ReservationService
     private function checkItemAvailability(Reservation $reservation, ReservationItemStack $reservationItemStack): array
     {
         $itemStack = $reservationItemStack->itemStack;
-        $totalItemsInStack = $itemStack->items()->count();
+        $totalItemsInStack = $itemStack->intactItems()->count();
 
         $countUnAvailable = 0;
         $result = [

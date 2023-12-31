@@ -12,7 +12,7 @@ class ItemRequest extends FormRequest
             'name' => ['nullable'],
             'notes' => ['nullable'],
             'item_stack_id' => ['required', 'integer'],
-            'is_intact' => ['required'],
+            'is_intact' => ['nullable'],
         ];
     }
 
