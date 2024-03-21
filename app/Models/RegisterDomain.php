@@ -10,6 +10,10 @@ class RegisterDomain extends Model
     use HasFactory;
 
     protected $fillable = [
-        'domain',
+        'domain', 'active'
+    ];
+
+    protected $casts = [
+        'active' => 'bool'
     ];
 }

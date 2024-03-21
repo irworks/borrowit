@@ -19,6 +19,18 @@ class ReservationService
             ->orderBy('from');
     }
 
+    public function indexByUser(User $user, bool $onlyOpen)
+    {
+        $reservations = Reservation::whereUserId($user->id)
+            ->orderBy('fulfilled_at')
+            ->orderBy('from');
+
+        if ($onlyOpen) {
+            $reservations = $reservations->whereNull('fulfilled_at');
+        }
+        return $reservations;
+    }
+
     public function reservationByItem(Item $item): ?Reservation
     {
         return $this->index()->whereNull('fulfilled_at')
@@ -98,7 +110,7 @@ class ReservationService
     private function checkItemAvailability(Reservation $reservation, ReservationItemStack $reservationItemStack): array
     {
         $itemStack = $reservationItemStack->itemStack;
-        $totalItemsInStack = $itemStack->items()->count();
+        $totalItemsInStack = $itemStack->intactItems()->count();
 
         $countUnAvailable = 0;
         $result = [

@@ -14,22 +14,32 @@
     @yield('addition-scripts')
 </head>
 <body>
-    <div id="app">
-        @include('layouts.navigation.navbar')
+<div id="app">
+    @include('layouts.navigation.navbar')
 
-        <main class="py-4">
-            @if ($errors->any())
-                <div class="toast-container top-end-corner">
-                    @foreach($errors->all() as $error)
-                        <x-toast :title="__('general.error')">
-                            {{ $error }}
-                        </x-toast>
-                    @endforeach
-                </div>
-            @endif
+    <main class="py-4">
+        @if ($errors->any())
+            <div class="toast-container top-end-corner">
+                @foreach($errors->all() as $error)
+                    <x-toast :title="__('general.error')" icon="bi-exclamation-triangle" icon-color="text-warning">
+                        {{ $error }}
+                    </x-toast>
+                @endforeach
+            </div>
+        @endif
 
-            @yield('content')
-        </main>
-    </div>
+        @if(!empty($success) || session('success'))
+            <div class="toast-container top-end-corner">
+                @foreach($success ?? session('success') ?? [] as $message)
+                    <x-toast :title="__('general.alert')" icon="bi-check2-circle" icon-color="text-success">
+                        {{ $message }}
+                    </x-toast>
+                @endforeach
+            </div>
+        @endif
+
+        @yield('content')
+    </main>
+</div>
 </body>
 </html>

@@ -13,10 +13,17 @@ return [
     */
 
     'overview' => 'Buchungen',
+    'one' => 'Buchung',
     'submit' => 'Buchung abschließen',
     'return' => 'Rückgabe',
     'title' => 'Buchung',
     'list-booked' => 'Gebuchte Gegenstände',
     'list' => 'Buchungen',
-    'none' => 'Aktuell keine offenen Buchungen'
+    'none-open' => 'Aktuell keine offenen Buchungen',
+
+    'list-my' => 'Meine Buchungen',
+    'list-my-rentals' => 'Meine Ausleihen',
+    'none' => 'Keine Buchungen gefunden',
+    'show-only-open' => 'Nur offene anzeigen',
+    'fulfilled' => 'Zurückgegeben am :date',
 ];

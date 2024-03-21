@@ -4,15 +4,13 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class ItemRequest extends FormRequest
+class StoreRegisterDomainRequest extends FormRequest
 {
     public function rules(): array
     {
         return [
-            'name' => ['nullable'],
-            'notes' => ['nullable'],
-            'item_stack_id' => ['required', 'integer'],
-            'is_intact' => ['nullable'],
+            'domain' => ['required', 'string', 'unique:register_domains,domain'],
+            'active' => ['nullable'],
         ];
     }
 

@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Collection;
 
-class Reservation extends Model
+class Reservation extends Model implements Rental
 {
     use HasFactory;
 
@@ -46,10 +48,25 @@ class Reservation extends Model
         return $this->hasMany(ReservationItemStack::class);
     }
 
-    public function reservationItemStackNames()
+    public function itemStackNames(): Collection
     {
         return $this->reservationItemStacks()
             ->join('item_stacks', 'item_stack_id', '=', 'item_stacks.id')
             ->pluck('name');
+    }
+
+    public function itemStackNamesString(): string
+    {
+        return implode(', ', $this->itemStackNames()->toArray());
+    }
+
+    public function isOpen(): bool
+    {
+        return !$this->isFulfilled();
+    }
+
+    public function getFinishedAtAttribute(): Carbon
+    {
+        return $this->fulfilled_at;
     }
 }

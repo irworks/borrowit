@@ -4,12 +4,14 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ItemStackRequest;
-use App\Http\Requests\UserRequest;
-use App\Models\Category;
+use App\Models\Item;
 use App\Models\ItemStack;
-use App\Models\User;
-use App\Models\UserRole;
 use App\Services\CategoryService;
+use App\Services\QR\QRImageWithLogo;
+use chillerlan\QRCode\Common\EccLevel;
+use chillerlan\QRCode\Data\QRMatrix;
+use chillerlan\QRCode\QRCode;
+use chillerlan\QRCode\QROptions;
 
 class ItemStackController extends Controller
 {
@@ -76,5 +78,46 @@ class ItemStackController extends Controller
         $itemStack->delete();
 
         return back();
+    }
+
+    public function generateQrCode(ItemStack $itemStack, Item $item)
+    {
+        $options = new QROptions;
+
+        $options->version             = 5;
+        $options->outputBase64        = false;
+        $options->scale               = 24;
+        $options->imageTransparent    = false;
+        $options->drawCircularModules = false;
+        $options->circleRadius        = 0.45;
+        $options->keepAsSquare        = [
+            QRMatrix::M_FINDER,
+            QRMatrix::M_FINDER_DOT,
+        ];
+
+        #84b816
+        /*$options->moduleValues = [
+            // finder
+            QRMatrix::M_FINDER_DARK => [132, 184, 22],    // dark (true)
+            QRMatrix::M_FINDER_DOT => [132, 184, 22],    // finder dot, dark (true)
+            QRMatrix::M_FINDER => [255, 255, 255], // light (false)
+        ];*/
+
+        // ecc level H is required for logo space
+        $options->eccLevel            = EccLevel::H;
+        $options->addLogoSpace        = true;
+        $options->logoSpaceWidth      = 13;
+        $options->logoSpaceHeight     = 5.5;
+
+        $qrcode = new QRCode($options);
+        $qrcode->addByteSegment(route('items.scan', ['item' => $item]));
+
+        $qrOutputInterface = new QRImageWithLogo($options, $qrcode->getQRMatrix());
+
+        // dump the output, with an additional logo
+        // the logo could also be supplied via the options, see the svgWithLogo example
+        $out = $qrOutputInterface->dump(null, resource_path('img/asta-logo.PNG'), "{$itemStack->name} ($item->name)");
+        return response()->make($out, 200)->header('Content-Type', 'image/png')
+            ->header('Content-Disposition', "attachment; filename=item-{$item->id}.png");
     }
 }

@@ -34,7 +34,7 @@
                     </td>
                     <td class="d-none d-md-table-cell">{{ $reservation->organisation->name ?? __('general.none') }}</td>
                     <td>
-                        {{ implode(', ', $reservation->reservationItemStackNames()->toArray()) }}
+                        {{ $reservation->itemStackNamesString() }}
                     </td>
                     <td>
                         <a class="btn btn-primary @if($reservation->isFulfilled()) disabled @endif"

@@ -7,6 +7,7 @@ use App\Http\Requests\ReserveItemRequest;
 use App\Http\Requests\UpdateReservationItemRequest;
 use App\Http\Requests\UpdateReservationRequest;
 use App\Models\ItemStack;
+use App\Models\Reservation;
 use App\Models\ReservationItemStack;
 use App\Services\ReservationService;
 use Carbon\Carbon;
@@ -30,7 +31,7 @@ class ReservationController extends AuthUserController
         $reservation = $this->reservationService->currentReservationForUser($this->user());
         $items = $this->reservationService->checkAvailability($reservation);
 
-        return view('reservation.edit', [
+        return view('user.reservation.edit', [
             'reservation' => $reservation,
             'items' => $items
         ]);
@@ -120,6 +121,16 @@ class ReservationController extends AuthUserController
 
     public function done()
     {
-        return view('reservation.done');
+        return view('user.reservation.done');
+    }
+
+    public function cancel(Reservation $reservation)
+    {
+        abort_if($reservation->user_id !== auth()->user()->id || $reservation->isFulfilled(), 404);
+
+        $reservation->reservationItemStacks()->delete();
+        $reservation->delete();
+
+        return back()->with('success', [__('reservation.retracted')]);
     }
 }

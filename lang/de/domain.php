@@ -12,6 +12,9 @@ return [
     |
     */
 
-    'is-intact' => 'Verfügbar',
-    'name' => 'Name',
+    'name' => 'Domain Name',
+    'name-example' => 'example.com',
+    'created' => 'Domain erfolgreich erstellt.',
+    'updated' => 'Domain erfolgreich aktualisiert.',
+    'deleted' => 'Domain erfolgreich gelöscht.'
 ];

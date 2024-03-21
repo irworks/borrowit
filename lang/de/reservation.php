@@ -12,6 +12,7 @@ return [
     |
     */
 
+    'one' => 'Reservierung',
     'overview' => 'Reservierungen',
     'current' => 'Aktuelle Reservierung',
     'list' => 'Reservierungen',
@@ -34,5 +35,13 @@ return [
     'reserve' => 'Der Reservierung hinzufügen',
 
     'thank-you' => 'Reservierung Erfolgreich',
-    'reservation-complete' => 'Vielen Dank. Deine Reservierung war erfolgreich und wurde entgegengenommen.'
+    'reservation-complete' => 'Vielen Dank. Deine Reservierung war erfolgreich und wurde entgegengenommen.',
+
+    'list-my' => 'Meine Reservierungen',
+    'fulfilled' => 'Abgeholt am :date',
+    'none' => 'Keine Reservierungen gefunden',
+    'show-only-open' => 'Nur offene anzeigen',
+    'retract' => 'Reservierung zurücknehmen',
+    'retracted' => 'Reservierung wurde erfolgreich gelöscht.',
+    'retract-description' => 'Wenn die Reservierung zurückgenommen wird, wird diese endgültig aus dem System gelöscht. Im Falle einer nötigen Änderung muss eine neue Reservierung erstellt werden.'
 ];

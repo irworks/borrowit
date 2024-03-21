@@ -21,6 +21,10 @@ return [
     'created-at' => 'Erstellt am',
     'action' => 'Optionen',
     'back' => 'Zurück',
+    'cancel' => 'Abbrechen',
+    'confirm-delete' => 'Endgültig löschen',
+    'error' => 'Fehler',
+    'alert' => 'Hinweis',
 
     'open-scanner' => 'Scanner öffnen',
     'list-itemStacks' => 'Reservierte Gegenstände',

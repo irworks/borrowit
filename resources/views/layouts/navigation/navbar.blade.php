@@ -23,6 +23,10 @@
                         <li class="nav-item nav-item-admin">
                             <a class="nav-link" href="{{ route('itemStacks.index') }}">@lang('item-stack.overview')</a>
                         </li>
+
+                        <li class="nav-item nav-item-admin">
+                            <a class="nav-link" href="{{ route('admin.settings') }}">@lang('settings.admin')</a>
+                        </li>
                     @endif
 
                     @if(Auth::user()->role >= \App\Models\UserRole::Manager->value)
@@ -71,6 +75,10 @@
                         </a>
 
                         <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+                            <a class="dropdown-item" href="{{ route('user.booking.index') }}">
+                                @lang('booking.list-my-rentals')
+                            </a>
+
                             <a class="dropdown-item" href="{{ route('profile.update') }}">
                                 @lang('profile.title')
                             </a>

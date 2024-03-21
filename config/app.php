@@ -17,6 +17,10 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
+    'version' => [
+        'branch' => env('BUILD_VERSION_BRANCH', 'unknown'),
+        'commit' => env('BUILD_VERSION_COMMIT', 'unknown')
+    ],
 
     /*
     |--------------------------------------------------------------------------
@@ -84,7 +88,7 @@ return [
     |
     */
 
-    'locale' => 'de',
+    'locale' => env('APP_DEFAULT_LOCALE', 'de'),
 
     /*
     |--------------------------------------------------------------------------

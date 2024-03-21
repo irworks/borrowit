@@ -47,7 +47,7 @@
                         <input type="hidden" name="item_stack_id" value="{{ $itemStack->id }}">
 
                         <script>
-                            const ITEM_STACK_MAX_AMOUNT = {{ $itemStack->items()->count() }};
+                            const ITEM_STACK_MAX_AMOUNT = {{ $itemStack->intactItems()->count() }};
                             const VUE_LANG = {
                                 quantityLabel: "{{ __('item-stack.quantity') }}",
                                 reserve: "{{ __('reservation.reserve') }}",
@@ -56,21 +56,21 @@
                         <div id="item-stack-show-app">
                             <input type="hidden" name="item_stack_id" value="{{ $itemStack->id }}">
 
-                            @if($itemStack->items()->count() > 1)
+                            @if($itemStack->intactItems()->count() > 1)
                                 <label for="quantity" class="form-label">@lang('item-stack.quantity')</label>
-                                <input type="range" class="form-range" name="quantity" min="1" max="{{ $itemStack->items()->count() }}" id="quantity">
+                                <input type="range" class="form-range" name="quantity" min="1" max="{{ $itemStack->intactItems()->count() }}" id="quantity">
                             @else
                                 <input type="hidden" name="quantity" value="1">
                             @endif
 
-                            <button type="submit" class="btn btn-primary" @if($itemStack->items()->count() <= 0) disabled @endif>
+                            <button type="submit" class="btn btn-primary" @if($itemStack->intactItems()->count() <= 0) disabled @endif>
                                 <i class="me-1 bi bi-calendar-plus"></i> @lang('reservation.reserve')
                             </button>
                         </div>
                     </form>
                 </div>
                 <div class="card-footer">
-                    <small class="text-body-secondary">{!! __('item-stack.amount-available', ['times' => $itemStack->items()->count()]) !!}</small>
+                    <small class="text-body-secondary">{!! __('item-stack.amount-available', ['times' => $itemStack->intactItems()->count()]) !!}</small>
                 </div>
             </div>
 
