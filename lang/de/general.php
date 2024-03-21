@@ -29,5 +29,5 @@ return [
     'active' => 'Aktiv',
     'inactive' => 'Inaktiv',
     'none' => 'Keine',
-    'admin-options' => 'Admin Optionen'
+    'admin-options' => 'Admin Optionen',
 ];

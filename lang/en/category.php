@@ -13,4 +13,9 @@ return [
     */
 
     'overview' => 'Categories',
+    'name' => 'Category name',
+    'description' => 'Category discription',
+    'is_organisation_required' => 'Membership of an organisation is required to book this item',
+    'save' => 'Save category',
+    'create' => 'New category',
 ];

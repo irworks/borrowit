@@ -12,6 +12,11 @@ return [
     |
     */
 
-    'is-intact' => 'Intakt',
-    'name' => 'Name',
+    'overview' => 'Bookings',
+    'submit' => 'submit booking',
+    'return' => 'return',
+    'title' => 'Booking',
+    'list-booked' => 'booked items',
+    'list' => 'Bookings',
+    'none' => 'No open bookings'
 ];

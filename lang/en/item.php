@@ -12,6 +12,6 @@ return [
     |
     */
 
-    'is-intact' => 'Intakt',
+    'is-intact' => 'Is intact',
     'name' => 'Name',
 ];

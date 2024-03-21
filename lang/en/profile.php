@@ -12,6 +12,6 @@ return [
     |
     */
 
-    'is-intact' => 'Intakt',
-    'name' => 'Name',
+    'title' => 'Profile',
+    '' => '',
 ];
