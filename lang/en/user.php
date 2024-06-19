@@ -12,16 +12,16 @@ return [
     |
     */
 
-    'amount-available' => 'In total <b>:times</b> times available.',
-    'overview' => 'Inventory overview',
-    'image' => 'Image',
-    'empty-image',
+    'overview' => 'User',
     'name' => 'Name',
-    'category' => 'Category',
-    'quantity' => 'Number of copies',
-    'is-set' => 'Is a set',
-    'edit' => 'Edit item categories',
-    'description' => 'Description',
-    'save' => 'Save',
-    'items' => 'Items',
+    'email' => 'E-Mail adress',
+    'phone' => 'Phone number',
+    'organisation' => 'Organisation',
+    'new-password' => 'New password',
+    'new-password-confirmation' => 'Confirm new password',
+    'save-profile' => 'Save',
+
+    'role' => 'Role',
+    'last-login' => 'Last login',
+    'active' => 'Status',
 ];

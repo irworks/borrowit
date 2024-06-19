@@ -12,10 +12,11 @@ return [
     |
     */
 
-    'overview' => 'Categories',
-    'name' => 'Category name',
-    'description' => 'Category discription',
-    'is_organisation_required' => 'Membership of an organisation is required to book this item',
-    'save' => 'Save category',
-    'create' => 'New category',
+    'overview' => 'Bookings',
+    'submit' => 'submit booking',
+    'return' => 'return',
+    'title' => 'Booking',
+    'list-booked' => 'booked items',
+    'list' => 'Bookings',
+    'none' => 'No open bookings'
 ];

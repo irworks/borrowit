@@ -28,8 +28,10 @@ return [
 
     'open-scanner' => 'Scanner öffnen',
     'list-itemStacks' => 'Reservierte Gegenstände',
+
+    'scanned' => 'Gescannt',
     'active' => 'Aktiv',
     'inactive' => 'Inaktiv',
     'none' => 'Keine',
-    'admin-options' => 'Admin Optionen'
+    'admin-options' => 'Admin Optionen',
 ];

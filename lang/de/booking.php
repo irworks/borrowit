@@ -15,6 +15,9 @@ return [
     'overview' => 'Buchungen',
     'one' => 'Buchung',
     'submit' => 'Buchung abschließen',
+    'return' => 'Rückgabe',
+    'title' => 'Buchung',
+    'list-booked' => 'Gebuchte Gegenstände',
     'list' => 'Buchungen',
     'none-open' => 'Aktuell keine offenen Buchungen',
 

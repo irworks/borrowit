@@ -12,16 +12,6 @@ return [
     |
     */
 
-    'amount-available' => 'In total <b>:times</b> times available.',
-    'overview' => 'Inventory overview',
-    'image' => 'Image',
-    'empty-image',
+    'is-intact' => 'Is intact',
     'name' => 'Name',
-    'category' => 'Category',
-    'quantity' => 'Number of copies',
-    'is-set' => 'Is a set',
-    'edit' => 'Edit item categories',
-    'description' => 'Description',
-    'save' => 'Save',
-    'items' => 'Items',
 ];

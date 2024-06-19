@@ -16,8 +16,18 @@ return [
     'no' => 'No',
     'edit' => 'Edit',
     'show-all' => 'Show all',
-    'back' => 'Go back',
     'pieces' => 'Pieces',
     'days' => 'Days',
-    'none' => 'None'
+    'created-at' => 'Created at',
+    'action' => 'Option',
+    'back' => 'Back',
+
+    'open-scanner' => 'Open scanner',
+    'list-itemStacks' => 'Reserved items',
+
+    'scanned' => 'Scanned',
+    'active' => 'Activ',
+    'inactive' => 'Inactiv',
+    'none' => 'None',
+    'admin-options' => 'Admin options',
 ];
