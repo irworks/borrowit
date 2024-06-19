@@ -22,7 +22,7 @@
                     <td>{{ $reservation->id }}</td>
                     <td class="text-center">
                         <span class="badge bg-primary rounded-pill">
-                            {{ $reservation->to->diffInDays($reservation->from) }} @lang('general.days')
+                            {{ $reservation->from->diffInDays($reservation->to) }} @lang('general.days')
                         </span><br>
                         {{ $reservation->from->format('d.m.y H:i') }}<br>{{ $reservation->to->format('d.m.y H:i') }}
                     </td>

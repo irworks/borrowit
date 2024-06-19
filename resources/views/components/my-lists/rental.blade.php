@@ -12,7 +12,7 @@
 
         <div class="text-end">
             <span class="badge bg-primary rounded-pill">
-                {{ $rental->to->diffInDays($rental->from) }} @lang('general.days')
+                {{ $rental->from->diffInDays($rental->to) }} @lang('general.days')
             </span>
             <br>
             <small class="text-muted">{{ $rental->from->format('d.m.y H:i') }}
