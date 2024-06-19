@@ -1,0 +1,32 @@
+services:
+  frontend:
+    build:
+      context: .
+      target: web_server
+    image: irwks/borrowit-frontend:latest
+    environment:
+      FPM_HOST: backend
+    restart: always
+    depends_on:
+      - backend
+    ports:
+      - "${PUBLIC_PORT}:80"
+    networks:
+      - borrowit
+
+  backend:
+    build:
+      context: .
+      target: php_fpm
+    image: irwks/borrowit-backend:latest
+    env_file: .env
+    working_dir: /app
+    restart: always
+    expose:
+      - "9000"
+    networks:
+      - borrowit
+
+networks:
+  borrowit:
+    driver: bridge
