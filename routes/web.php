@@ -66,3 +66,5 @@ Route::post('/settings', [\App\Http\Controllers\Admin\AdminSettingsController::c
 Route::patch('/settings/domains/{domain}', [\App\Http\Controllers\Admin\AdminSettingsController::class, 'updateDomain'])->name('admin.settings.domain');
 Route::delete('/settings/domains/{domain}', [\App\Http\Controllers\Admin\AdminSettingsController::class, 'deleteDomain'])->name('admin.settings.domain');
 Route::post('/settings/domains', [\App\Http\Controllers\Admin\AdminSettingsController::class, 'storeDomain'])->name('admin.settings.domain.store');
+
+Route::get('/dashboard', [\App\Http\Controllers\Manager\ManagerDashboardController::class, 'index'])->name('admin.dashboard');

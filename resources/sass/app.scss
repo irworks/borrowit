@@ -49,3 +49,19 @@
 .bg-gray {
     background-color: #fcfcfc;
 }
+
+.start-075 {
+    left: 0.75rem;
+}
+
+.zoom-hover {
+    transition: all ease-in-out 0.2s;
+}
+
+.zoom-hover:hover {
+    transform: scale(1.1);
+}
+
+.text-darker {
+    color: rgb(239, 239, 240) !important;
+}

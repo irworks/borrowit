@@ -12,6 +12,10 @@ use Illuminate\Database\Eloquent\Builder;
 
 class ReservationService
 {
+    /**
+     * Return a list of reservations, which are where completed and submitted by the user.
+     * @return mixed
+     */
     public function index()
     {
         return Reservation::whereNotNull('submitted_at')
@@ -19,6 +23,21 @@ class ReservationService
             ->orderBy('from');
     }
 
+    /**
+     *  Return a list of reservations, which are where completed and submitted by the user and have *not yet* been fulfilled.
+     * @return mixed
+     */
+    public function indexOpen()
+    {
+        return $this->index()->whereNull('fulfilled_at');
+    }
+
+    /**
+     * List of reservations for a specific user. Option to return only *not yet* fulfilled ones.
+     * @param User $user
+     * @param bool $onlyOpen
+     * @return mixed
+     */
     public function indexByUser(User $user, bool $onlyOpen)
     {
         $reservations = Reservation::whereUserId($user->id)
@@ -31,6 +50,11 @@ class ReservationService
         return $reservations;
     }
 
+    /**
+     * Attempt to find a {@link Reservation}, which includes a specific {@link Item}.
+     * @param Item $item
+     * @return Reservation|null
+     */
     public function reservationByItem(Item $item): ?Reservation
     {
         return $this->index()->whereNull('fulfilled_at')
@@ -58,6 +82,13 @@ class ReservationService
             ]);
     }
 
+    /**
+     * Add an item stack to a reservation in a given quantity.
+     * @param Reservation $reservation
+     * @param int $itemStackId
+     * @param int $quantity
+     * @return void
+     */
     public function addItemStack(Reservation $reservation, int $itemStackId, int $quantity): void
     {
         $reservation->reservationItemStacks()->updateOrCreate(

@@ -7,6 +7,11 @@ use App\Models\User;
 
 class UserService
 {
+    public function index()
+    {
+        return User::all();
+    }
+
     public function update(User $user, string $phone, ?int $organisationId, ?string $password): void
     {
         if (empty($organisationId) || !Organisation::whereId($organisationId)->exists()) {

@@ -31,6 +31,10 @@
 
                     @if(Auth::user()->role >= \App\Models\UserRole::Manager->value)
                         <li class="nav-item nav-item-admin">
+                            <a class="nav-link" href="{{ route('admin.dashboard') }}">@lang('dashboard.title')</a>
+                        </li>
+
+                        <li class="nav-item nav-item-admin">
                             <a class="nav-link" href="{{ route('reservations.index') }}">@lang('reservation.overview')</a>
                         </li>
 
