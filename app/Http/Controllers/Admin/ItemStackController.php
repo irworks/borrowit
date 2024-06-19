@@ -107,7 +107,7 @@ class ItemStackController extends Controller
         $options->eccLevel            = EccLevel::H;
         $options->addLogoSpace        = true;
         $options->logoSpaceWidth      = 13;
-        $options->logoSpaceHeight     = 5.5;
+        $options->logoSpaceHeight     = 5;
 
         $qrcode = new QRCode($options);
         $qrcode->addByteSegment(route('items.scan', ['item' => $item]));
