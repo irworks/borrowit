@@ -9,7 +9,9 @@ use App\Models\ItemStack;
 use App\Services\CategoryService;
 use App\Services\QR\QRImageWithLogo;
 use chillerlan\QRCode\Common\EccLevel;
+use chillerlan\QRCode\Data\QRCodeDataException;
 use chillerlan\QRCode\Data\QRMatrix;
+use chillerlan\QRCode\Output\QRCodeOutputException;
 use chillerlan\QRCode\QRCode;
 use chillerlan\QRCode\QROptions;
 
@@ -82,6 +84,8 @@ class ItemStackController extends Controller
 
     public function generateQrCode(ItemStack $itemStack, Item $item)
     {
+        $this->authorize('update', $itemStack);
+
         $options = new QROptions;
 
         $options->version             = 5;
@@ -112,11 +116,16 @@ class ItemStackController extends Controller
         $qrcode = new QRCode($options);
         $qrcode->addByteSegment(route('items.scan', ['item' => $item]));
 
-        $qrOutputInterface = new QRImageWithLogo($options, $qrcode->getQRMatrix());
+        try {
+            $qrOutputInterface = new QRImageWithLogo($options, $qrcode->getQRMatrix());
+        } catch (QRCodeDataException|QRCodeOutputException $e) {
+            return back()->withErrors([$e->getMessage()]);
+        }
 
-        // dump the output, with an additional logo
-        // the logo could also be supplied via the options, see the svgWithLogo example
-        $out = $qrOutputInterface->dump(null, resource_path('img/asta-logo.PNG'), "{$itemStack->name} ($item->name)");
+        $subtitle = config('qr.subtitle.show') ? "{$itemStack->name} ($item->name)" : null;
+        $logo = config('qr.logo.show') ? config('qr.logo.path') : null;
+
+        $out = $qrOutputInterface->dump(null, $logo, $subtitle);
         return response()->make($out, 200)->header('Content-Type', 'image/png')
             ->header('Content-Disposition', "attachment; filename=item-{$item->id}.png");
     }
