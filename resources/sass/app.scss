@@ -65,3 +65,23 @@
 .text-darker {
     color: rgb(239, 239, 240) !important;
 }
+
+.icon-link > .bi {
+    margin-bottom: 0.3rem;
+}
+
+.auth-page-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 85vh;
+}
+
+.auth-page-container-inner {
+    width: 90%;
+}
+@include media-breakpoint-up(md) {
+    .auth-page-container-inner {
+        width: 50%;
+    }
+}
