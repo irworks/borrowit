@@ -17,7 +17,7 @@ Route::get('/', function () {
     return redirect(\route('categories.index'));
 });
 
-Auth::routes();
+Auth::routes(['register' => config('auth.registration.enabled')]);
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 Route::resource('/categories', App\Http\Controllers\CategoryController::class);
