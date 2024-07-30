@@ -17,7 +17,7 @@ return [
     */
 
     'name' => env('APP_NAME', 'Laravel'),
-    'logo' => env('APP_LOGO', asset('images/logo/borrow-it-logo.svg')),
+    'logo' => env('APP_LOGO', '/images/logo/borrow-it-logo.svg'),
     'version' => [
         'branch' => env('BUILD_VERSION_BRANCH', 'unknown'),
         'commit' => env('BUILD_VERSION_COMMIT', 'unknown')
