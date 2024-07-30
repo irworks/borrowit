@@ -48,6 +48,32 @@ class RegisterServiceTest extends TestCase
 
         $result = $this->registerService->isRegistrationAllowed('user.name@example.org');
         $this->assertTrue($result);
+
+        $result = $this->post(route('register', [
+            'name' => 'Bob der Fake Baumeister',
+            'email' => 'bob@example.com',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+            'phone' => '0123456789',
+        ]));
+
+        $result->assertRedirect('/');
+        $this->assertDatabaseMissing('users', [
+            'email' => 'bob@example.com'
+        ]);
+
+        $result = $this->post(route('register', [
+            'name' => 'Bob der Baumeister',
+            'email' => 'bob@example.org',
+            'password' => 'password',
+            'password_confirmation' => 'password',
+            'phone' => '0123456789',
+        ]));
+
+        $result->assertRedirectToRoute('home');
+        $this->assertDatabaseHas('users', [
+            'email' => 'bob@example.org'
+        ]);
     }
 
     public function testRegistrationNotValidDomain()
