@@ -1,7 +1,7 @@
 # ----------------------
 # Composer install step
 # ----------------------
-FROM composer:2.6 as build
+FROM composer:2.7 AS build
 
 WORKDIR /app
 
@@ -18,7 +18,7 @@ RUN composer install \
 # ----------------------
 # npm install step
 # ----------------------
-FROM node:20-alpine as node
+FROM node:20-alpine AS node
 
 WORKDIR /app
 
@@ -33,7 +33,7 @@ RUN npm run build
 # ----------------------
 # The FPM production container
 # ----------------------
-FROM php:8.3-fpm as php_fpm
+FROM php:8.3-fpm AS php_fpm
 
 RUN docker-php-ext-install -j$(nproc) pdo_mysql
 
@@ -49,7 +49,7 @@ COPY --chown=www-data --from=node /app/public/build/manifest.json /app/public/bu
 
 RUN chmod -R 750 /app/storage
 
-FROM nginx:mainline-alpine as web_server
+FROM nginx:mainline-alpine AS web_server
 
 WORKDIR /app/public
 
