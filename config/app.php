@@ -23,6 +23,12 @@ return [
         'commit' => env('BUILD_VERSION_COMMIT', 'unknown')
     ],
 
+    'images' => [
+        'uploads' => [
+            'itemStacks' => env('ITEM_STACK_IMAGE_PATH', 'uploads/itemStacks/images')
+        ]
+    ],
+
     /*
     |--------------------------------------------------------------------------
     | Application Environment

@@ -7,6 +7,7 @@ use App\Http\Requests\ItemStackRequest;
 use App\Models\Item;
 use App\Models\ItemStack;
 use App\Services\CategoryService;
+use App\Services\ItemStackService;
 use App\Services\QR\QRImageWithLogo;
 use chillerlan\QRCode\Common\EccLevel;
 use chillerlan\QRCode\Data\QRCodeDataException;
@@ -37,7 +38,7 @@ class ItemStackController extends Controller
         }
     }
 
-    public function store(ItemStackRequest $request)
+    public function store(ItemStackRequest $request, ItemStackService $itemStackService)
     {
         $this->authorize('create', ItemStack::class);
         $data = $request->validated();
@@ -51,6 +52,11 @@ class ItemStackController extends Controller
             'is_intact' => true
         ]);
 
+        // check for uploaded image
+        if (($image = $request->file('image')) !== null && $image->isValid()) {
+            $itemStackService->saveUploadedImage($image, $itemStack);
+        }
+
         return redirect(route('itemStacks.index'));
     }
 
@@ -63,10 +69,15 @@ class ItemStackController extends Controller
         ]);
     }
 
-    public function update(ItemStackRequest $request, ItemStack $itemStack)
+    public function update(ItemStackRequest $request, ItemStack $itemStack, ItemStackService $itemStackService)
     {
         $this->authorize('update', $itemStack);
         $data = $request->validated();
+
+        // check for uploaded image
+        if (($image = $request->file('image')) !== null && $image->isValid()) {
+            $itemStackService->saveUploadedImage($image, $itemStack);
+        }
 
         $itemStack->update($data);
 

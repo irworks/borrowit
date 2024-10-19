@@ -10,7 +10,7 @@ class ItemStackRequest extends FormRequest
     {
         return [
             'name' => ['required', 'string'],
-            'image_uri' => ['nullable', 'string'],
+            'image' => ['nullable', 'file', 'image', 'mimes:jpeg,png,jpg,gif'],
             'description' => ['nullable'],
             'is_set' => ['nullable'],
             'category_id' => ['required', 'integer', 'exists:categories,id'],

@@ -36,6 +36,21 @@ class ItemStack extends Model
         return !empty($this->image_uri);
     }
 
+    public function imageSavePath(bool $basePathOnly = false): string
+    {
+        $basePath = config('app.images.uploads.itemStacks');
+        if ($basePathOnly) {
+            return "/{$basePath}";
+        }
+
+        return public_path( "{$basePath}/");
+    }
+
+    public function imageFileName(string $extension): string
+    {
+        return "{$this->id}-stack.{$extension}";
+    }
+
     public function getCreatedAtStringAttribute(): string
     {
         return $this->created_at->format(config('app.time_format'));

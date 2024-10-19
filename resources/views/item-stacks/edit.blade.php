@@ -11,7 +11,8 @@
         </div>
 
         <div class="p-3">
-            <form action="{{ route('itemStacks.update', ['itemStack' => $itemStack]) }}" method="post">
+            <form enctype="multipart/form-data" action="{{ route('itemStacks.update', ['itemStack' => $itemStack]) }}"
+                  method="post">
                 @csrf
                 @method('PATCH')
 
@@ -29,8 +30,21 @@
 
                     <div class="col-6">
                         <div class="mb-3">
+                            @if($itemStack->hasImage())
+                                <div class="row align-items-end">
+                                    <div class="col-6">
+                                        <img class="item-stack-image" src="{{ $itemStack->image_uri }}" alt="{{ $itemStack->name }}">
+                                    </div>
+                                    <div class="col-6">
+                            @endif
+
                             <label for="image" class="form-label">@lang('item-stack.image')</label>
                             <input class="form-control" type="file" id="image" name="image">
+
+                            @if($itemStack->hasImage())
+                                    </div>
+                                </div>
+                            @endif
                         </div>
 
                         <div class="mb-3">
