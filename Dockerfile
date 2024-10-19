@@ -60,6 +60,7 @@ COPY --chown=laravel --from=build /app/vendor/ /app/vendor/
 COPY --chown=laravel --from=node /app/public/build/manifest.json /app/public/build/manifest.json
 
 RUN chmod -R 750 /app/storage
+USER root
 
 FROM nginx:mainline-alpine AS web_server
 
