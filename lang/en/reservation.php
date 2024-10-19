@@ -22,6 +22,7 @@ return [
     'organisation' => 'Organisation',
     'collect' => 'Scan reservation',
     'cancel' => 'Cancel reservation',
+    'list-open' => 'Current reservations',
 
     'title' => 'Current reservations',
     'description' => 'Alle Gegenstände können nur während der Öffnungszeiten des AStAs ausgeliehen und zurückgebracht werden. Öffnungszeiten: 10-14 Uhr (Vorlesungszeit), 10-13 Uhr (Vorlesungsfreie Zeit).',

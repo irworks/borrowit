@@ -19,6 +19,7 @@ return [
     'title' => 'Buchung',
     'list-booked' => 'Gebuchte Gegenstände',
     'list' => 'Buchungen',
+    'list-open' => 'Aktuelle Buchungen',
     'none-open' => 'Aktuell keine offenen Buchungen',
 
     'list-my' => 'Meine Buchungen',

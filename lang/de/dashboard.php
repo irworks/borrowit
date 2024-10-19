@@ -4,7 +4,7 @@ return [
 
     /*
     |--------------------------------------------------------------------------
-    | General Language Lines
+    | Dashboard Language Lines
     |--------------------------------------------------------------------------
     |
     | The following language lines are used for general utility words and
@@ -12,12 +12,5 @@ return [
     |
     */
 
-    'overview' => 'Bookings',
-    'submit' => 'submit booking',
-    'return' => 'return',
-    'title' => 'Booking',
-    'list-booked' => 'booked items',
-    'list' => 'Bookings',
-    'list-open' => 'Current bookings',
-    'none' => 'No open bookings',
+    'title' => 'Dashboard',
 ];

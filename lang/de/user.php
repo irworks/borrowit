@@ -13,6 +13,7 @@ return [
     */
 
     'overview' => 'Nutzer*innen',
+    'list' => 'Nutzer*innen',
     'name' => 'Name',
     'email' => 'E-Mail Adresse',
     'phone' => 'Handynummer',

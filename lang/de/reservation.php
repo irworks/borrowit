@@ -16,6 +16,7 @@ return [
     'overview' => 'Reservierungen',
     'current' => 'Aktuelle Reservierung',
     'list' => 'Reservierungen',
+    'list-open' => 'Aktuelle Reservierungen',
     'from' => 'Buchungsbeginn',
     'to' => 'Buchungsende',
     'duration' => 'Buchungsdauer',
