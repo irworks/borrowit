@@ -70,7 +70,7 @@ ENV UID=${UID}
 ENV GID=${GID}
 
 RUN addgroup --gid ${GID} --system laravel
-RUN adduser --ingroup laravel --system --disabled-password -shell /bin/sh -u ${UID} laravel
+RUN adduser --ingroup laravel --system --disabled-password --shell /bin/sh -u ${UID} laravel
 RUN sed -i "s/user  nginx/user laravel/g" /etc/nginx/nginx.conf
 
 WORKDIR /app/public
