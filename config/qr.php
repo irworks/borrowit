@@ -14,6 +14,7 @@ return [
     |
     */
 
+    'url' => env('QR_BASE_URL', env('APP_URL')),
     'logo' => [
         'show' => env('QR_LOGO_SHOW', true),
         'path' => env('QR_LOGO_PATH', resource_path('img/asta-logo.PNG')),

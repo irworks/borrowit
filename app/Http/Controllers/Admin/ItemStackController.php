@@ -10,6 +10,7 @@ use App\Services\CategoryService;
 use App\Services\ItemStackService;
 use App\Services\QR\QRImageWithLogo;
 use chillerlan\QRCode\Common\EccLevel;
+use chillerlan\QRCode\Common\Version;
 use chillerlan\QRCode\Data\QRCodeDataException;
 use chillerlan\QRCode\Data\QRMatrix;
 use chillerlan\QRCode\Output\QRCodeOutputException;
@@ -99,7 +100,7 @@ class ItemStackController extends Controller
 
         $options = new QROptions;
 
-        $options->version             = 5;
+        $options->version             = Version::AUTO;
         $options->outputBase64        = false;
         $options->scale               = 24;
         $options->imageTransparent    = false;
@@ -125,7 +126,9 @@ class ItemStackController extends Controller
         $options->logoSpaceHeight     = 5;
 
         $qrcode = new QRCode($options);
-        $qrcode->addByteSegment(route('items.scan', ['item' => $item]));
+        $qrcode->addByteSegment(
+            config('qr.url') . route('items.scan', ['item' => $item], false)
+        );
 
         try {
             $qrOutputInterface = new QRImageWithLogo($options, $qrcode->getQRMatrix());

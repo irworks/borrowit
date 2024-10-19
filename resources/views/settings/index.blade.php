@@ -44,6 +44,10 @@
                     <span>{{ config('app.url') }}</span>
                 </div>
                 <div class="d-flex justify-content-between align-items-center">
+                    <span>QR Code Base URL<br><small>QR_BASE_URL</small></span>
+                    <span>{{ config('qr.url') }}</span>
+                </div>
+                <div class="d-flex justify-content-between align-items-center">
                     <span>Default Locale<br><small>APP_DEFAULT_LOCALE</small></span>
                     <span>{{ config('app.locale') }}</span>
                 </div>
