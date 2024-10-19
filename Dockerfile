@@ -50,7 +50,7 @@ COPY ./deployment/php-www.conf /usr/local/etc/php-fpm.d/www.conf
 # MacOS staff group's gid is 20, so is the dialout group in alpine linux. We're not using it, let's just remove it.
 RUN delgroup dialout
 
-RUN addgroup -g ${GID} --system laravel
+RUN addgroup --gid ${GID} --system laravel
 RUN adduser -G laravel --system -D -s /bin/sh -u ${UID} laravel
 
 USER laravel
@@ -69,7 +69,7 @@ ARG GID
 ENV UID=${UID}
 ENV GID=${GID}
 
-RUN addgroup -g ${GID} --system laravel
+RUN addgroup --gid ${GID} --system laravel
 RUN adduser -G laravel --system -D -s /bin/sh -u ${UID} laravel
 RUN sed -i "s/user  nginx/user laravel/g" /etc/nginx/nginx.conf
 
