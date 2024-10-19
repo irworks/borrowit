@@ -3,10 +3,15 @@ services:
     build:
       context: .
       target: web_server
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
     image: irwks/borrowit-frontend:latest
     environment:
       FPM_HOST: backend
     restart: always
+    volumes:
+      - ./uploads:/public/uploads
     depends_on:
       - backend
     ports:
@@ -18,12 +23,15 @@ services:
     build:
       context: .
       target: php_fpm
+      args:
+        - UID=${UID:-1000}
+        - GID=${GID:-1000}
     image: irwks/borrowit-backend:latest
     env_file: .env
     working_dir: /app
     restart: always
     volumes:
-        - ./uploads:/public/uploads
+       - ./uploads:/public/uploads
     expose:
       - "9000"
     networks:
