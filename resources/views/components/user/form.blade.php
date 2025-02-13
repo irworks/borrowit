@@ -35,7 +35,7 @@
         </select>
     </td>
     <td>
-        {{ $user->last_login ?? '-' }}
+        {{ $user->last_login_at_string }}
     </td>
     <td>
         @if(empty($user))
@@ -47,7 +47,7 @@
         @endif
     </td>
     <td>
-        {{ $user->created_at_string ?? '-' }}
+        {{ $user->created_at_string }}
     </td>
     <td>
         <button type="submit" form="user-{{ $user->id ?? 0 }}" class="btn btn-primary">

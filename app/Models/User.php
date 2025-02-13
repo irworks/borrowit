@@ -21,7 +21,8 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
-        'phone'
+        'phone',
+        'last_login_at',
     ];
 
     /**
@@ -41,6 +42,7 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'last_login_at' => 'datetime',
         'password' => 'hashed',
     ];
 
@@ -58,6 +60,11 @@ class User extends Authenticatable
 
     public function getCreatedAtStringAttribute(): string
     {
-        return $this->created_at->format(config('app.time_format'));
+        return $this->created_at?->format(config('app.time_format')) ?? '';
+    }
+
+    public function getLastLoginAtStringAttribute(): string
+    {
+        return $this->last_login_at?->format(config('app.time_format')) ?? '-';
     }
 }
