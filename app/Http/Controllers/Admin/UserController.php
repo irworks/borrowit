@@ -27,8 +27,16 @@ class UserController extends Controller
         $data = $request->validated();
 
         $user->update($data);
+
+        // check for attributes which should only be changed by an admin
         if (isset($data['role']) && auth()->user()->role >= UserRole::Admin->value) {
             $user->role = $data['role'];
+
+            // update active state
+            if ($request->has('active')) {
+                $user->active = $data['active'] === 'true';
+            }
+
             $user->save();
         }
 

@@ -40,6 +40,14 @@ class LoginController extends Controller
         $this->middleware('guest')->except('logout');
     }
 
+    protected function validateLogin(Request $request)
+    {
+        $request->validate([
+            $this->username() => 'exists:users,' . $this->username() . ',active,1',
+            'password' => 'required|string',
+        ]);
+    }
+
     protected function authenticated(Request $request, User $user)
     {
         $user->update(['last_login_at' => now()]);
