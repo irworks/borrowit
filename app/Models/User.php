@@ -3,6 +3,9 @@
 namespace App\Models;
 
 // use Illuminate\Contracts\Auth\MustVerifyEmail;
+use App\Services\Project\ProjectCategoryService;
+use Carbon\Carbon;
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
@@ -66,5 +69,27 @@ class User extends Authenticatable
     public function getLastLoginAtStringAttribute(): string
     {
         return $this->last_login_at?->format(config('app.time_format')) ?? '-';
+    }
+
+    private function addLikeFilter($query, array $filters, string $field)
+    {
+        return $query->when($filters[$field] ?? null && !\Str::contains($filters[$field], '%'), function (Builder $query, $value) use ($field) {
+            $query->where($field, 'LIKE', "%{$value}%");
+        });
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $this->addLikeFilter($query, $filters, 'name');
+        $this->addLikeFilter($query, $filters, 'email');
+        $this->addLikeFilter($query, $filters, 'phone');
+
+        $query->when($filters['role'] ?? null, function (Builder $query, $value) {
+            $query->where('role', '=', $value);
+        });
+
+        $query->when($filters['active'] ?? null, function (Builder $query, $value) {
+            $query->where('active', '=', ($value === 'true'));
+        });
     }
 }

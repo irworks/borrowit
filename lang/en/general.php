@@ -30,4 +30,5 @@ return [
     'inactive' => 'Inactiv',
     'none' => 'None',
     'admin-options' => 'Admin options',
+    'filter' => 'Filter',
 ];

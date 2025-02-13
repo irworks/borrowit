@@ -18,7 +18,10 @@ class UserController extends Controller
             UserRole::Admin->value => __('auth.roles-' . UserRole::Admin->value),
         ];
 
-        return view('users.index', ['users' => User::all(), 'roles' => $roles]);
+        return view('users.index', [
+            'users' => User::whereNotNull('id')->filter(\Request::only(['name', 'email', 'phone', 'role', 'active']))->get(),
+            'roles' => $roles
+        ]);
     }
 
     public function update(UserRequest $request, User $user)

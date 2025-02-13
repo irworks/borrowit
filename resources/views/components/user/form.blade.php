@@ -50,26 +50,28 @@
         {{ $user->created_at_string }}
     </td>
     <td>
-        <button type="submit" form="user-{{ $user->id ?? 0 }}" class="btn btn-primary">
-            @if(empty($user))
-                <i class="bi bi-save-fill"></i>
-            @else
-                <i class="bi bi-save"></i>
-            @endif
-        </button>
-
-        @if(!empty($user))
-            <button type="submit" name="active" form="user-{{ $user->id ?? 0 }}" class="btn @if($user->active) btn-outline-danger @else btn-outline-success @endif" value="{{ $user->active ? 'false' : 'true' }}">
-                @if($user->active)
-                    <i class="bi bi-person-fill-dash"></i>
+        <div class="d-flex gap-1">
+            <button type="submit" form="user-{{ $user->id ?? 0 }}" class="btn btn-primary">
+                @if(empty($user))
+                    <i class="bi bi-save-fill"></i>
                 @else
-                    <i class="bi bi-person-fill-check"></i>
+                    <i class="bi bi-save"></i>
                 @endif
             </button>
 
-            <button type="button" class="btn btn-danger ms-2"
-                    data-bs-toggle="modal" onclick="document.getElementById('deleteForm').action = '{{ route('users.destroy', ['user' => $user]) }}'"
-                    data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
-        @endif
+            @if(!empty($user))
+                <button type="submit" name="active" form="user-{{ $user->id ?? 0 }}" class="btn @if($user->active) btn-outline-danger @else btn-outline-success @endif" value="{{ $user->active ? 'false' : 'true' }}">
+                    @if($user->active)
+                        <i class="bi bi-person-fill-dash"></i>
+                    @else
+                        <i class="bi bi-person-fill-check"></i>
+                    @endif
+                </button>
+
+                <button type="button" class="btn btn-danger ms-2"
+                        data-bs-toggle="modal" onclick="document.getElementById('deleteForm').action = '{{ route('users.destroy', ['user' => $user]) }}'"
+                        data-bs-target="#deleteModal"><i class="bi bi-trash"></i></button>
+            @endif
+        </div>
     </td>
 </tr>
