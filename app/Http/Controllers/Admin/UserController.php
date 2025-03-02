@@ -34,6 +34,7 @@ class UserController extends Controller
         // check for attributes which should only be changed by an admin
         if (isset($data['role']) && auth()->user()->role >= UserRole::Admin->value) {
             $user->role = $data['role'];
+            $user->email = $data['email'];
 
             // update active state
             if ($request->has('active')) {

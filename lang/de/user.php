@@ -20,6 +20,7 @@ return [
     'organisation' => 'Organisation',
     'new-password' => 'Neues Passwort',
     'new-password-confirmation' => 'Neues Passwort wiederholen',
+    'new-password-description' => 'Bitte füllen Sie die folgenden Felder aus, falls Sie Ihr Passwort ändern möchten.',
     'save-profile' => 'Speichern',
 
     'role' => 'Rolle',
