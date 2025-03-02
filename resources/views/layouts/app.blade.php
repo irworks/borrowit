@@ -16,6 +16,7 @@
 <body>
 <div id="app">
     @include('layouts.navigation.navbar')
+    <x-dynamic-content :item="$dynamicContent['below_navbar'] ?? null" />
 
     <main class="py-4">
         @if ($errors->any())
@@ -40,6 +41,10 @@
 
         @yield('content')
     </main>
+
+    <footer>
+        <x-dynamic-content :item="$dynamicContent['footer'] ?? null" />
+    </footer>
 </div>
 </body>
 </html>

@@ -6,7 +6,9 @@
 
 @section('content')
     <div class="container container-fluid">
+        <x-dynamic-content :item="$dynamicContent['above_page_content'] ?? null" />
         @yield('page-content')
+        <x-dynamic-content :item="$dynamicContent['below_page_content'] ?? null" />
     </div>
 @endsection
 
