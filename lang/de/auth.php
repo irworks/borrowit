@@ -10,6 +10,8 @@ return [
     'password' => 'Das Passwort ist falsch.',
     'throttle' => 'Zu viele Loginversuche. Versuchen Sie es bitte in :seconds Sekunden nochmal.',
 
+    'verify-email' => 'Bestätigen Sie Ihre E-Mail-Adresse',
+
     'roles-all'  => 'Alle',
     'roles-0'  => 'Gast',
     'roles-1'  => 'Benutzer*in',
