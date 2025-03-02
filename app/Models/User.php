@@ -11,7 +11,7 @@ use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable implements MustVerifyEmail
 {
-    use HasApiTokens, HasFactory, Notifiable;
+    use HasApiTokens, HasFactory, HasFilters, Notifiable;
 
     /**
      * The attributes that are mass assignable.
@@ -66,13 +66,6 @@ class User extends Authenticatable implements MustVerifyEmail
     public function getLastLoginAtStringAttribute(): string
     {
         return $this->last_login_at?->format(config('app.time_format')) ?? '-';
-    }
-
-    private function addLikeFilter($query, array $filters, string $field)
-    {
-        return $query->when($filters[$field] ?? null && !\Str::contains($filters[$field], '%'), function (Builder $query, $value) use ($field) {
-            $query->where($field, 'LIKE', "%{$value}%");
-        });
     }
 
     public function scopeFilter($query, array $filters)

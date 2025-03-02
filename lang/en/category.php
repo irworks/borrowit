@@ -14,8 +14,9 @@ return [
 
     'overview' => 'Categories',
     'name' => 'Category name',
-    'description' => 'Category discription',
+    'description' => 'Category description',
     'is_organisation_required' => 'Membership of an organisation is required to book this item',
     'save' => 'Save category',
     'create' => 'New category',
+    'all' => 'All categories',
 ];

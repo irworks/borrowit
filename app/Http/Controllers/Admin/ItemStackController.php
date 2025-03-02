@@ -24,7 +24,8 @@ class ItemStackController extends Controller
         $this->authorize('viewAny', ItemStack::class);
 
         return view('item-stacks.index', [
-            'itemStacks' => ItemStack::all(), 'categories' => $categoryService->selectArray()
+            'itemStacks' => ItemStack::filter(\Request::only(['name', 'category']))->get(),
+            'categories' => $categoryService->selectArray()
         ]);
     }
 

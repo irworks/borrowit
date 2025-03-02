@@ -66,6 +66,15 @@
     color: rgb(239, 239, 240) !important;
 }
 
+.primary-lighter {
+    background-color: color(srgb 0.2175 0.5606 0.565) !important;
+    color: rgb(239, 239, 240) !important;
+}
+
+.primary-lighter::placeholder {
+    color: rgb(220, 219, 219) !important;
+}
+
 .icon-link > .bi {
     margin-bottom: 0.3rem;
 }

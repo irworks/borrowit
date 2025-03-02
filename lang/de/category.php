@@ -18,4 +18,5 @@ return [
     'is_organisation_required' => 'Mitgliedschaft in einer Organisation zur Buchung erforderlich',
     'save' => 'Kategorie speichern',
     'create' => 'Neue Kategorie',
+    'all' => 'Alle Kategorien',
 ];

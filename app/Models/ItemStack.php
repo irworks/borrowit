@@ -2,12 +2,13 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class ItemStack extends Model
 {
-    use HasFactory;
+    use HasFactory, HasFilters;
 
     protected $fillable = [
         'name',
@@ -54,5 +55,14 @@ class ItemStack extends Model
     public function getCreatedAtStringAttribute(): string
     {
         return $this->created_at->format(config('app.time_format'));
+    }
+
+    public function scopeFilter($query, array $filters)
+    {
+        $this->addLikeFilter($query, $filters, 'name');
+
+        $query->when($filters['category'] ?? null, function (Builder $query, $value) {
+            $query->where('category_id', '=', $value);
+        });
     }
 }
